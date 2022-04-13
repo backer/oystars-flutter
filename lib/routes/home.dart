@@ -19,8 +19,8 @@ class HomeState extends State<HomeScreen> {
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
 
-    var iconSize = screenHeight * 0.2;
-    var buttonWidth = screenWidth * 0.6;
+    var iconSize = screenHeight * 0.25;
+    var buttonWidth = screenWidth * 0.7;
 
     return Scaffold(
         backgroundColor: const Color(LOGO_BACKGROUND_COLOR),
@@ -29,7 +29,7 @@ class HomeState extends State<HomeScreen> {
         ),
         body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Image(
                 image: AssetImage('$IMAGES_PATH$IMAGE_OYSTARS_LOGO'),
@@ -38,7 +38,7 @@ class HomeState extends State<HomeScreen> {
               ),
               Text(
                 WELCOME_MESSAGE,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white, fontSize: 20),
               ),
               HomeButton(
                 label: SOCCER,

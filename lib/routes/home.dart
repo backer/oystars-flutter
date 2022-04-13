@@ -21,6 +21,7 @@ class HomeState extends State<HomeScreen> {
 
     var iconSize = screenHeight * 0.25;
     var buttonWidth = screenWidth * 0.7;
+    var topMargin = screenHeight * 0.1;
 
     return Scaffold(
         backgroundColor: const Color(LOGO_BACKGROUND_COLOR),
@@ -31,6 +32,9 @@ class HomeState extends State<HomeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
+              SizedBox(
+                height: topMargin,
+              ),
               Image(
                 image: AssetImage('$IMAGES_PATH$IMAGE_OYSTARS_LOGO'),
                 height: iconSize,

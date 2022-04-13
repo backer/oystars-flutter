@@ -34,7 +34,7 @@ class SplashState extends State<SplashScreen> {
   }
 
   loadHomeScreen(BuildContext context) {
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => const MyHomePage(title: 'Flutter Demo Home')));
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const HomeScreen()));
   }
 }

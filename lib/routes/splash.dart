@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:oystars_flutter_app/constants/colors.dart';
+import 'package:oystars_flutter_app/constants/strings.dart';
 
 import 'home.dart';
 
@@ -20,7 +21,7 @@ class SplashState extends State<SplashScreen> {
     return const Scaffold(
         backgroundColor: Color(LOGO_BACKGROUND_COLOR),
         body: Center(
-          child: Image(image: AssetImage('assets/images/oystars_logo.png')),
+          child: Image(image: AssetImage('$IMAGES_PATH$IMAGE_OYSTARS_LOGO')),
         ));
   }
 

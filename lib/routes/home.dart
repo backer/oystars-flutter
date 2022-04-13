@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:oystars_flutter_app/constants/colors.dart';
 import 'package:oystars_flutter_app/constants/strings.dart';
 import 'package:oystars_flutter_app/utils/utils.dart';
+import 'package:oystars_flutter_app/widgets/home_button.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,8 +12,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeState extends State<HomeScreen> {
+  static const double verticalSpacing = 20;
+
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
+
+    var iconSize = screenHeight * 0.2;
+    var buttonWidth = screenWidth * 0.6;
+
     return Scaffold(
         backgroundColor: const Color(LOGO_BACKGROUND_COLOR),
         appBar: AppBar(
@@ -24,26 +33,27 @@ class HomeState extends State<HomeScreen> {
             children: <Widget>[
               Image(
                 image: AssetImage('$IMAGES_PATH$IMAGE_OYSTARS_LOGO'),
-                height: 48,
-                width: 48,
+                height: iconSize,
+                width: iconSize,
               ),
               Text(
                 WELCOME_MESSAGE,
                 style: TextStyle(color: Colors.white),
               ),
-              ElevatedButton(
-                  onPressed: () => showSnackBar(context, '$SOCCER clicked'),
-                  child: Text(
-                    SOCCER,
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  )),
-              ElevatedButton(
-                  onPressed: () => showSnackBar(context, '$FOOTBALL clicked'),
-                  child: Text(FOOTBALL,
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold)))
-            ],
+              HomeButton(
+                label: SOCCER,
+                onPressed: () => showSnackBar(context, '$SOCCER clicked'),
+              ),
+              HomeButton(
+                label: FOOTBALL,
+                onPressed: () => showSnackBar(context, '$FOOTBALL clicked'),
+              ),
+            ]
+                .map((e) => Padding(
+                      padding: EdgeInsets.only(bottom: verticalSpacing),
+                      child: e,
+                    ))
+                .toList(),
           ),
         ));
   }

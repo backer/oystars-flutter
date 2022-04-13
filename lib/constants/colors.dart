@@ -1,0 +1,1 @@
+const LOGO_BACKGROUND_COLOR = 0xff00a5cf;

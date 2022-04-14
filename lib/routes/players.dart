@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oystars_flutter_app/constants/strings.dart';
-import 'package:oystars_flutter_app/widgets/statistics_row.dart';
+import 'package:oystars_flutter_app/widgets/statistics_table.dart';
 
 class PlayersScreen extends StatelessWidget {
   const PlayersScreen({Key? key}) : super(key: key);
@@ -15,7 +15,11 @@ class PlayersScreen extends StatelessWidget {
       'Seasons Played'
     ];
     var testValues = ['Brian Acker', 62, 25, 17, 10];
+    var testValues2 = ['Meagan Elliott', 65, 17, 25, 7];
 
+    var valuesList = [testValues, testValues2];
+
+    var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
@@ -24,20 +28,11 @@ class PlayersScreen extends StatelessWidget {
       ),
       body: Container(
           height: screenHeight,
-          child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  StatisticsRow(
-                    values: testHeaders,
-                    isHeaderRow: true,
-                  ),
-                  StatisticsRow(
-                    values: testValues,
-                    isHeaderRow: false,
-                  )
-                ],
-              ))),
+          width: screenWidth,
+          child: StatisticsTable(
+            headers: testHeaders,
+            values: valuesList,
+          )),
     );
   }
 }

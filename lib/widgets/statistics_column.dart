@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:oystars_flutter_app/constants/dimens.dart';
 
-class StatisticsRow extends StatelessWidget {
-  const StatisticsRow(
-      {Key? key,
-      this.isHeaderRow = false,
-      this.lockFirstColumn = true,
-      required this.values})
+class StatisticsColumn extends StatelessWidget {
+  const StatisticsColumn(
+      {Key? key, this.lockFirstRow = true, required this.values})
       : super(key: key);
 
-  final bool isHeaderRow;
-  final bool lockFirstColumn;
+  final bool lockFirstRow;
   final List values;
 
   @override
@@ -18,25 +14,31 @@ class StatisticsRow extends StatelessWidget {
     var firstValue = values.removeAt(0);
 
     var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
     var columnWidth = screenWidth * 0.25;
-    var listViewWidth = screenWidth * 0.75;
+    var listViewHeight = screenHeight - statisticsItemHeight;
 
     return Container(
-        width: screenWidth,
-        height: statisticsItemHeight,
+        width: columnWidth,
+        height: screenHeight,
         child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          physics: lockFirstColumn
+          scrollDirection: Axis.vertical,
+          physics: lockFirstRow
               ? const NeverScrollableScrollPhysics()
               : const AlwaysScrollableScrollPhysics(),
-          child: Row(children: [
-            Container(width: columnWidth, child: Text(firstValue.toString())),
+          child: Column(children: [
             Container(
-                width: listViewWidth,
+                width: columnWidth,
+                height: statisticsItemHeight,
+                child: Text(firstValue.toString())),
+            Container(
+                width: columnWidth,
+                height: listViewHeight,
                 child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
+                    scrollDirection: Axis.vertical,
                     itemCount: values.length,
-                    padding: const EdgeInsets.only(right: 10),
+                    padding: const EdgeInsets.only(
+                        bottom: statisticsItemVerticalSpacing),
                     itemBuilder: (context, index) {
                       return Container(
                           width: columnWidth,

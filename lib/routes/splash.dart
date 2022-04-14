@@ -21,7 +21,11 @@ class SplashState extends State<SplashScreen> {
     return const Scaffold(
         backgroundColor: Color(LOGO_BACKGROUND_COLOR),
         body: Center(
-          child: Image(image: AssetImage('$IMAGES_PATH$IMAGE_OYSTARS_LOGO')),
+          child: Image(
+            image: AssetImage('$IMAGES_PATH$IMAGE_OYSTARS_LOGO'),
+            width: 512,
+            height: 512,
+          ),
         ));
   }
 

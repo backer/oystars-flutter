@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oystars_flutter_app/constants/colors.dart';
 import 'package:oystars_flutter_app/constants/strings.dart';
+import 'package:oystars_flutter_app/routes/players.dart';
 import 'package:oystars_flutter_app/utils/utils.dart';
 import 'package:oystars_flutter_app/widgets/home_button.dart';
 
@@ -20,7 +21,6 @@ class HomeState extends State<HomeScreen> {
     var screenHeight = MediaQuery.of(context).size.height;
 
     var iconSize = screenHeight * 0.25;
-    var buttonWidth = screenWidth * 0.7;
     var topMargin = screenHeight * 0.1;
 
     return Scaffold(
@@ -46,7 +46,7 @@ class HomeState extends State<HomeScreen> {
               ),
               HomeButton(
                 label: SOCCER,
-                onPressed: () => showSnackBar(context, '$SOCCER clicked'),
+                onPressed: () => loadPlayersScreen(context),
               ),
               HomeButton(
                 label: FOOTBALL,
@@ -60,5 +60,10 @@ class HomeState extends State<HomeScreen> {
                 .toList(),
           ),
         ));
+  }
+
+  loadPlayersScreen(BuildContext context) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const PlayersScreen()));
   }
 }

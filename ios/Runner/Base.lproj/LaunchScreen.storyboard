@@ -20,18 +20,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="512" verticalCompressionResistancePriority="512" insetsLayoutMarginsFromSafeArea="NO" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="YRO-k0-Ey4">
-                                <rect key="frame" x="15" y="256" width="384" height="384"/>
+                                <rect key="frame" x="-7.5" y="233.5" width="429" height="429"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="384" id="1At-cm-9Pf"/>
-                                    <constraint firstAttribute="height" constant="384" id="gEI-2l-1W2"/>
+                                    <constraint firstAttribute="width" constant="429" id="9Nl-bG-5Bn"/>
+                                    <constraint firstAttribute="height" constant="429" id="RHs-qt-LqL"/>
                                 </constraints>
                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.59215686274509804" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="ATl-xw-ndV"/>
-                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="jdy-EB-KEH"/>
+                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="QXi-GS-GTg"/>
+                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="oUu-3t-xIc"/>
                         </constraints>
                     </view>
                 </viewController>

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:oystars_flutter_app/constants/dimens.dart';
+import 'package:oystars_flutter_app/widgets/stats_item.dart';
 
-class StatisticsColumn extends StatelessWidget {
-  const StatisticsColumn(
-      {Key? key, this.lockFirstRow = true, required this.values})
+class StatsColumn extends StatelessWidget {
+  const StatsColumn({Key? key, this.lockFirstRow = true, required this.values})
       : super(key: key);
 
   final bool lockFirstRow;
@@ -27,10 +27,12 @@ class StatisticsColumn extends StatelessWidget {
               ? const NeverScrollableScrollPhysics()
               : const AlwaysScrollableScrollPhysics(),
           child: Column(children: [
-            Container(
-                width: columnWidth,
-                height: statisticsItemHeight,
-                child: Text(firstValue.toString())),
+            StatsItem(
+              width: columnWidth,
+              height: statisticsItemHeight,
+              value: firstValue.toString(),
+              isHeader: true,
+            ),
             Container(
                 width: columnWidth,
                 height: listViewHeight,
@@ -40,10 +42,10 @@ class StatisticsColumn extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         bottom: statisticsItemVerticalSpacing),
                     itemBuilder: (context, index) {
-                      return Container(
+                      return StatsItem(
                           width: columnWidth,
                           height: statisticsItemHeight,
-                          child: Text(values[index].toString()));
+                          value: values[index].toString());
                     }))
           ]),
         ));

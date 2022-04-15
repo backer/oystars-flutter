@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:oystars_flutter_app/constants/dimens.dart';
-import 'package:oystars_flutter_app/widgets/statistics_column.dart';
+import 'package:oystars_flutter_app/widgets/stats_column.dart';
 
-class StatisticsTable extends StatelessWidget {
-  const StatisticsTable(
+class StatsTable extends StatelessWidget {
+  const StatsTable(
       {Key? key,
       this.lockFirstColumn = true,
       required this.headers,
@@ -34,7 +34,7 @@ class StatisticsTable extends StatelessWidget {
           child: Row(children: [
             Container(
                 width: columnWidth,
-                child: StatisticsColumn(
+                child: StatsColumn(
                   values: firstColumn,
                 )),
             Container(
@@ -45,7 +45,7 @@ class StatisticsTable extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return Container(
                           width: columnWidth,
-                          child: StatisticsColumn(
+                          child: StatsColumn(
                             values: columns[index],
                           ));
                     }))

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oystars_flutter_app/constants/strings.dart';
-import 'package:oystars_flutter_app/widgets/statistics_table.dart';
+import 'package:oystars_flutter_app/widgets/stats_table.dart';
 
 class PlayersScreen extends StatelessWidget {
   const PlayersScreen({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class PlayersScreen extends StatelessWidget {
       body: Container(
           height: screenHeight,
           width: screenWidth,
-          child: StatisticsTable(
+          child: StatsTable(
             headers: testHeaders,
             values: valuesList,
           )),

@@ -6,6 +6,8 @@ import 'package:oystars_flutter_app/routes/players.dart';
 import 'package:oystars_flutter_app/utils/utils.dart';
 import 'package:oystars_flutter_app/widgets/home_button.dart';
 
+import '../data.model/soccer_player.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -63,12 +65,16 @@ class HomeState extends State<HomeScreen> {
         ));
   }
 
-  loadPlayersScreen(BuildContext context) {
-    fetchSoccerPlayers().then((value) {
+  loadPlayersScreen(BuildContext context) async {
+    try {
+      List<SoccerPlayer> players =
+          await showLoadingSpinner(context, fetchSoccerPlayers());
       Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => PlayersScreen(
-                players: value,
+                players: players,
               )));
-    }, onError: (error) => debugPrint('Error fetching soccer players: $error'));
+    } catch (e) {
+      debugPrint('Error fetching soccer players: ${e.toString()}');
+    }
   }
 }

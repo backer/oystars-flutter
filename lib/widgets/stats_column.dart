@@ -16,7 +16,7 @@ class StatsColumn extends StatelessWidget {
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
     var columnWidth = screenWidth * 0.25;
-    var listViewHeight = screenHeight - statisticsItemHeight;
+    var listViewHeight = screenHeight - statsItemHeight;
 
     return Container(
         width: columnWidth,
@@ -29,7 +29,7 @@ class StatsColumn extends StatelessWidget {
           child: Column(children: [
             StatsItem(
               width: columnWidth,
-              height: statisticsItemHeight,
+              height: statsItemHeight,
               value: firstValue.toString(),
               isHeader: true,
             ),
@@ -39,12 +39,12 @@ class StatsColumn extends StatelessWidget {
                 child: ListView.builder(
                     scrollDirection: Axis.vertical,
                     itemCount: values.length,
-                    padding: const EdgeInsets.only(
-                        bottom: statisticsItemVerticalSpacing),
+                    padding:
+                        const EdgeInsets.only(bottom: statsItemVerticalSpacing),
                     itemBuilder: (context, index) {
                       return StatsItem(
                           width: columnWidth,
-                          height: statisticsItemHeight,
+                          height: statsItemHeight,
                           value: values[index].toString());
                     }))
           ]),

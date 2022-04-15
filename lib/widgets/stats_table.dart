@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oystars_flutter_app/constants/dimens.dart';
 import 'package:oystars_flutter_app/widgets/stats_column.dart';
+import 'package:oystars_flutter_app/widgets/stats_item.dart';
 
 class StatsTable extends StatelessWidget {
   const StatsTable(
@@ -20,37 +21,37 @@ class StatsTable extends StatelessWidget {
     var firstColumn = columns.removeAt(0);
 
     var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
     var columnWidth = screenWidth * 0.25;
     var listViewWidth = screenWidth * 0.75;
 
     return Container(
-        width: screenWidth,
-        height: statisticsItemHeight,
-        child: SingleChildScrollView(
+      width: screenWidth,
+      height: screenHeight,
+      child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          physics: lockFirstColumn
-              ? const NeverScrollableScrollPhysics()
-              : const AlwaysScrollableScrollPhysics(),
-          child: Row(children: [
-            Container(
-                width: columnWidth,
-                child: StatsColumn(
-                  values: firstColumn,
-                )),
-            Container(
-                width: listViewWidth,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: columns.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                          width: columnWidth,
-                          child: StatsColumn(
-                            values: columns[index],
-                          ));
-                    }))
-          ]),
-        ));
+          child: Container(
+              width: columnWidth * headers.length,
+              height: screenHeight,
+              child: GridView(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: headers.length,
+                    mainAxisSpacing: 0.0,
+                    crossAxisSpacing: 0.0,
+                    childAspectRatio: columnWidth / statsItemHeight),
+                children: [
+                  ...headers
+                      .map((e) => StatsItem(
+                            value: e.toString(),
+                            width: columnWidth,
+                            height: statsItemHeight,
+                            isHeader: true,
+                          ))
+                      .toList(),
+                  ...getValuesWidgets(values, columnWidth)
+                ],
+              ))),
+    );
   }
 
   getColumnsData() {
@@ -66,5 +67,19 @@ class StatsTable extends StatelessWidget {
     }
 
     return columns;
+  }
+
+  getValuesWidgets(List<List> values, double columnWidth) {
+    List<Widget> singleList = [];
+    for (var list in values) {
+      for (var item in list) {
+        singleList.add(StatsItem(
+            value: item.toString(),
+            width: columnWidth,
+            height: statsItemHeight));
+      }
+    }
+
+    return singleList;
   }
 }

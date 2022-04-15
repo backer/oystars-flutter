@@ -16,6 +16,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class SplashState extends State<SplashScreen> {
+  static const splashTimeoutSeconds = 3;
+
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
@@ -32,7 +34,7 @@ class SplashState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 5), () async {
+    Future.delayed(const Duration(seconds: splashTimeoutSeconds), () async {
       loadHomeScreen(context);
     });
   }

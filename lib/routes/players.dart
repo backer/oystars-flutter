@@ -17,8 +17,10 @@ class PlayersScreen extends StatelessWidget {
     var testValues = ['Brian Acker', 62, 25, 17, 10];
     var testValues2 = ['Meagan Elliott', 65, 17, 25, 7];
 
-    var valuesList = [testValues, testValues2];
-
+    List<List<dynamic>> valuesList = [];
+    for (var i = 0; i < 40; i++) {
+      valuesList.add((i % 2 == 0) ? testValues2 : testValues);
+    }
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
 

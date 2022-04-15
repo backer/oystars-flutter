@@ -21,20 +21,22 @@ class PlayersScreen extends StatelessWidget {
     for (var i = 0; i < 40; i++) {
       valuesList.add((i % 2 == 0) ? testValues2 : testValues);
     }
-    var screenWidth = MediaQuery.of(context).size.width;
-    var screenHeight = MediaQuery.of(context).size.height;
+
+    var screenPadding = MediaQuery.of(context).padding;
+    var screenHeight = MediaQuery.of(context).size.height -
+        screenPadding.top -
+        screenPadding.bottom;
+    var appBar = AppBar(
+      title: const Text(PLAYERS),
+    );
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(PLAYERS),
+      appBar: appBar,
+      body: StatsTable(
+        headers: testHeaders,
+        values: valuesList,
+        height: screenHeight - appBar.preferredSize.height,
       ),
-      body: Container(
-          height: screenHeight,
-          width: screenWidth,
-          child: StatsTable(
-            headers: testHeaders,
-            values: valuesList,
-          )),
     );
   }
 }

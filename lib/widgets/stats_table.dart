@@ -7,45 +7,48 @@ class StatsTable extends StatelessWidget {
       {Key? key,
       this.lockFirstColumn = true,
       required this.headers,
-      required this.values})
+      required this.values,
+      required this.height})
       : super(key: key);
 
   final bool lockFirstColumn;
   final List headers;
   final List<List> values;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
-    var screenHeight = MediaQuery.of(context).size.height;
     var columnWidth = screenWidth * 0.25;
+    var tableWidth = columnWidth * headers.length;
 
-    return Container(
-      width: screenWidth,
-      height: screenHeight,
-      child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Container(
-              width: columnWidth * headers.length,
-              height: screenHeight,
-              child: GridView(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: headers.length,
-                    mainAxisSpacing: 0.0,
-                    crossAxisSpacing: 0.0,
-                    childAspectRatio: columnWidth / statsItemHeight),
-                children: [
-                  ...headers
-                      .map((e) => StatsItem(
-                            value: e.toString(),
-                            width: columnWidth,
-                            height: statsItemHeight,
-                            isHeader: true,
-                          ))
-                      .toList(),
-                  ...getValuesWidgets(values, columnWidth)
-                ],
-              ))),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Column(children: [
+        Row(
+          children: [
+            ...headers
+                .map((e) => StatsItem(
+                      value: e.toString(),
+                      width: columnWidth,
+                      height: statsItemHeight,
+                      isHeader: true,
+                    ))
+                .toList()
+          ],
+        ),
+        Container(
+            width: tableWidth,
+            height: height - statsItemHeight,
+            child: GridView(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: headers.length,
+                  mainAxisSpacing: 0.0,
+                  crossAxisSpacing: 0.0,
+                  childAspectRatio: columnWidth / statsItemHeight),
+              children: [...getValuesWidgets(values, columnWidth)],
+            ))
+      ]),
     );
   }
 

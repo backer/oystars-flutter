@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:oystars_flutter_app/constants/dimens.dart';
-import 'package:oystars_flutter_app/widgets/stats_column.dart';
 import 'package:oystars_flutter_app/widgets/stats_item.dart';
 
 class StatsTable extends StatelessWidget {
@@ -17,13 +16,9 @@ class StatsTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<List> columns = getColumnsData();
-    var firstColumn = columns.removeAt(0);
-
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
     var columnWidth = screenWidth * 0.25;
-    var listViewWidth = screenWidth * 0.75;
 
     return Container(
       width: screenWidth,
@@ -52,21 +47,6 @@ class StatsTable extends StatelessWidget {
                 ],
               ))),
     );
-  }
-
-  getColumnsData() {
-    var numColumns = headers.length;
-    List<List> columns = [];
-    for (var i = 0; i < numColumns; i++) {
-      List column = [];
-      column.add(headers[i]);
-      for (var element in values) {
-        column.add(element[i]);
-      }
-      columns.add(column);
-    }
-
-    return columns;
   }
 
   getValuesWidgets(List<List> values, double columnWidth) {

@@ -53,7 +53,7 @@ class HomeState extends State<HomeScreen> {
               ),
               HomeButton(
                 label: FOOTBALL,
-                onPressed: () => showSnackBar(context, '$FOOTBALL clicked'),
+                onPressed: () => loadFiveSeconds(),
               ),
             ]
                 .map((e) => Padding(
@@ -76,5 +76,11 @@ class HomeState extends State<HomeScreen> {
     } catch (e) {
       debugPrint('Error fetching soccer players: ${e.toString()}');
     }
+  }
+
+  loadFiveSeconds() async {
+    await showLoadingSpinner(
+        context, Future.delayed(const Duration(seconds: 5)));
+    showSnackBar(context, '$FOOTBALL clicked');
   }
 }

@@ -65,12 +65,10 @@ class HomeState extends State<HomeScreen> {
 
   loadPlayersScreen(BuildContext context) {
     fetchSoccerPlayers().then((value) {
-      var players = decodeSoccerPlayers(value);
-      debugPrint('decoded soccer players are: ${players.toString()}');
       Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => PlayersScreen(
-                players: players,
+                players: value,
               )));
-    }, onError: (error) => print('Error fetching soccer players: $error'));
+    }, onError: (error) => debugPrint('Error fetching soccer players: $error'));
   }
 }

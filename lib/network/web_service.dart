@@ -8,8 +8,10 @@ const baseUrl = 'https://5c75f3ks0k.execute-api.us-east-1.amazonaws.com';
 const soccerPath = '/soccer';
 const playersPath = '/players';
 
-Future<http.Response> fetchSoccerPlayers() {
-  return http.get(Uri.parse('$baseUrl$soccerPath$playersPath'));
+Future<List<SoccerPlayer>> fetchSoccerPlayers() {
+  return http.get(Uri.parse('$baseUrl$soccerPath$playersPath')).then((value) {
+    return decodeSoccerPlayers(value);
+  });
 }
 
 List<SoccerPlayer> decodeSoccerPlayers(http.Response response) {

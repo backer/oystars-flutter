@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:oystars_flutter_app/routes/home.dart';
 import 'package:oystars_flutter_app/routes/splash.dart';
 
 void main() {

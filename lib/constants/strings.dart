@@ -8,3 +8,8 @@ const WELCOME_MESSAGE = 'Welcome to OyStars!';
 const SOCCER = 'Soccer';
 const FOOTBALL = 'Football';
 const PLAYERS = 'Players';
+
+const jsonName = 'name';
+const jsonNumber = 'number';
+const jsonGoals = 'goals';
+const jsonAssists = 'assists';

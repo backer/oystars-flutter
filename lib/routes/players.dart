@@ -1,26 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:oystars_flutter_app/constants/strings.dart';
+import 'package:oystars_flutter_app/data.model/soccer_player.dart';
 import 'package:oystars_flutter_app/widgets/stats_table.dart';
 
 class PlayersScreen extends StatelessWidget {
-  const PlayersScreen({Key? key}) : super(key: key);
+  const PlayersScreen({Key? key, required this.players}) : super(key: key);
+
+  final List<SoccerPlayer> players;
 
   @override
   Widget build(BuildContext context) {
-    var testHeaders = [
-      'Players',
+    var headers = [
+      'Player Name',
+      'Number',
       'Goals',
       'Assists',
-      'Number',
-      'Seasons Played'
     ];
-    var testValues = ['Brian Acker', 62, 25, 17, 10];
-    var testValues2 = ['Meagan Elliott', 65, 17, 25, 7];
+    var values = playersToRows(players);
+    debugPrint('playersToRows = ${values}');
 
-    List<List<dynamic>> valuesList = [];
-    for (var i = 0; i < 40; i++) {
-      valuesList.add((i % 2 == 0) ? testValues2 : testValues);
-    }
+    // var testValues = ['Brian Acker', 62, 25, 17, 10];
+    // var testValues2 = ['Meagan Elliott', 65, 17, 25, 7];
+
+    // List<List<dynamic>> valuesList = [];
+    // for (var i = 0; i < 40; i++) {
+    //   valuesList.add((i % 2 == 0) ? testValues2 : testValues);
+    // }
 
     var screenPadding = MediaQuery.of(context).padding;
     var screenHeight = MediaQuery.of(context).size.height -
@@ -33,10 +38,26 @@ class PlayersScreen extends StatelessWidget {
     return Scaffold(
       appBar: appBar,
       body: StatsTable(
-        headers: testHeaders,
-        values: valuesList,
+        headers: headers,
+        values: values,
         height: screenHeight - appBar.preferredSize.height,
       ),
     );
+  }
+
+  List<List<dynamic>> playersToRows(List<SoccerPlayer> players) {
+    List<List<dynamic>> rows = [];
+
+    for (var player in players) {
+      List<dynamic> row = [];
+      row.add(player.name);
+      row.add(player.number);
+      row.add(player.goals);
+      row.add(player.assists);
+
+      rows.add(row);
+    }
+
+    return rows;
   }
 }

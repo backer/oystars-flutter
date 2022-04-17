@@ -3,11 +3,16 @@ import 'package:oystars_flutter_app/constants/strings.dart';
 import 'package:oystars_flutter_app/data.model/soccer_player.dart';
 import 'package:oystars_flutter_app/widgets/stats_table.dart';
 
-class PlayersScreen extends StatelessWidget {
+class PlayersScreen extends StatefulWidget {
   const PlayersScreen({Key? key, required this.players}) : super(key: key);
 
   final List<SoccerPlayer> players;
 
+  @override
+  State<StatefulWidget> createState() => PlayersState();
+}
+
+class PlayersState extends State<PlayersScreen> {
   @override
   Widget build(BuildContext context) {
     var headers = [
@@ -17,16 +22,8 @@ class PlayersScreen extends StatelessWidget {
       'Number',
     ];
     sortPlayersByGoals();
-    var values = playersToRows(players);
+    var values = playersToRows(widget.players);
     debugPrint('playersToRows = ${values}');
-
-    // var testValues = ['Brian Acker', 62, 25, 17, 10];
-    // var testValues2 = ['Meagan Elliott', 65, 17, 25, 7];
-
-    // List<List<dynamic>> valuesList = [];
-    // for (var i = 0; i < 40; i++) {
-    //   valuesList.add((i % 2 == 0) ? testValues2 : testValues);
-    // }
 
     var screenPadding = MediaQuery.of(context).padding;
     var screenHeight = MediaQuery.of(context).size.height -
@@ -63,6 +60,6 @@ class PlayersScreen extends StatelessWidget {
   }
 
   sortPlayersByGoals() {
-    players.sort((a, b) => -a.goals.compareTo(b.goals));
+    widget.players.sort((a, b) => -a.goals.compareTo(b.goals));
   }
 }

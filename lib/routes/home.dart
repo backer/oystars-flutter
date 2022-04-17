@@ -53,7 +53,7 @@ class HomeState extends State<HomeScreen> {
               ),
               HomeButton(
                 label: FOOTBALL,
-                onPressed: () => loadFiveSeconds(),
+                onPressed: () => onFootballPressed(),
               ),
             ]
                 .map((e) => Padding(
@@ -78,9 +78,9 @@ class HomeState extends State<HomeScreen> {
     }
   }
 
-  loadFiveSeconds() async {
+  onFootballPressed() async {
     await showLoadingSpinner(
-        context, Future.delayed(const Duration(seconds: 5)));
-    showSnackBar(context, '$FOOTBALL clicked');
+        context, Future.delayed(const Duration(seconds: 2)));
+    showSnackBar(context, '$FOOTBALL stats coming soon!');
   }
 }

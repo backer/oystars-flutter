@@ -59,7 +59,7 @@ class PlayersState extends State<PlayersScreen> {
                 padding: EdgeInsets.all(dropDownPadding),
                 child: DropdownButton<String>(
                   value: sortOption,
-                  icon: const Icon(Icons.arrow_downward),
+                  icon: const Icon(Icons.arrow_drop_down),
                   elevation: dropDownButtonElevation,
                   style: const TextStyle(color: Colors.purple),
                   underline: Container(

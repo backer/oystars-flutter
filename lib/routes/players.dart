@@ -16,6 +16,7 @@ class PlayersScreen extends StatelessWidget {
       'Assists',
       'Number',
     ];
+    sortPlayersByGoals();
     var values = playersToRows(players);
     debugPrint('playersToRows = ${values}');
 
@@ -59,5 +60,9 @@ class PlayersScreen extends StatelessWidget {
     }
 
     return rows;
+  }
+
+  sortPlayersByGoals() {
+    players.sort((a, b) => -a.goals.compareTo(b.goals));
   }
 }

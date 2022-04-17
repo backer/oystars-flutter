@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oystars_flutter_app/constants/strings.dart';
 import 'package:oystars_flutter_app/routes/splash.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: APP_NAME,
       theme: ThemeData(
         // This is the theme of your application.
         //

@@ -12,9 +12,9 @@ class PlayersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var headers = [
       'Player Name',
-      'Number',
       'Goals',
       'Assists',
+      'Number',
     ];
     var values = playersToRows(players);
     debugPrint('playersToRows = ${values}');
@@ -51,9 +51,9 @@ class PlayersScreen extends StatelessWidget {
     for (var player in players) {
       List<dynamic> row = [];
       row.add(player.name);
-      row.add(player.number > 0 ? player.number : "");
       row.add(player.goals);
       row.add(player.assists);
+      row.add(player.number > 0 ? player.number : "");
 
       rows.add(row);
     }

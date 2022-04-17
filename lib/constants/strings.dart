@@ -13,3 +13,5 @@ const jsonName = 'name';
 const jsonNumber = 'number';
 const jsonGoals = 'goals';
 const jsonAssists = 'assists';
+
+const sortByLabel = 'Sort By: ';

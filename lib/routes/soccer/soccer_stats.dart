@@ -139,7 +139,7 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
     switch (sortOption) {
       case sortOptionAssists:
         {
-          selectedPlayers.sort((a, b) => -a.assists.compareTo(b.assists));
+          selectedPlayers.sort((a, b) => -compareAssists(a, b));
         }
         break;
       case sortOptionName:
@@ -149,15 +149,53 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
         break;
       case sortOptionCleanSheetHalves:
         {
-          selectedPlayers.sort(
-              (a, b) => -a.cleanSheetHalves.compareTo(b.cleanSheetHalves));
+          selectedPlayers.sort((a, b) => -compareCSHalves(a, b));
         }
         break;
       case sortOptionGoals:
       default:
         {
-          selectedPlayers.sort((a, b) => -a.goals.compareTo(b.goals));
+          selectedPlayers.sort((a, b) => -compareGoals(a, b));
         }
     }
+  }
+
+  // compare goals directly, and if even, compare assists, then cs halves
+  int compareGoals(SoccerPlayer a, SoccerPlayer b) {
+    int result = a.goals.compareTo(b.goals);
+    if (result == 0) {
+      result = a.assists.compareTo(b.assists);
+      if (result == 0) {
+        result = a.cleanSheetHalves.compareTo(b.cleanSheetHalves);
+      }
+    }
+
+    return result;
+  }
+
+  // compare assists directly, and if even, compare goals, then cs halves
+  int compareAssists(SoccerPlayer a, SoccerPlayer b) {
+    int result = a.assists.compareTo(b.assists);
+    if (result == 0) {
+      result = a.goals.compareTo(b.goals);
+      if (result == 0) {
+        result = a.cleanSheetHalves.compareTo(b.cleanSheetHalves);
+      }
+    }
+
+    return result;
+  }
+
+  // compare cs halves directly, and if even, compare goals, then assists
+  int compareCSHalves(SoccerPlayer a, SoccerPlayer b) {
+    int result = a.cleanSheetHalves.compareTo(b.cleanSheetHalves);
+    if (result == 0) {
+      result = a.goals.compareTo(b.goals);
+      if (result == 0) {
+        result = a.assists.compareTo(b.assists);
+      }
+    }
+
+    return result;
   }
 }

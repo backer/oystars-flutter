@@ -4,16 +4,16 @@ import 'package:oystars_flutter_app/constants/strings.dart';
 import 'package:oystars_flutter_app/data.model/soccer_player.dart';
 import 'package:oystars_flutter_app/widgets/stats_table.dart';
 
-class PlayersScreen extends StatefulWidget {
-  const PlayersScreen({Key? key, required this.players}) : super(key: key);
+class SoccerStatsScreen extends StatefulWidget {
+  const SoccerStatsScreen({Key? key, required this.players}) : super(key: key);
 
   final List<SoccerPlayer> players;
 
   @override
-  State<StatefulWidget> createState() => PlayersState();
+  State<StatefulWidget> createState() => SoccerStatsState();
 }
 
-class PlayersState extends State<PlayersScreen> {
+class SoccerStatsState extends State<SoccerStatsScreen> {
   static const sortOptionGoals = 'Goals';
   static const sortOptionAssists = 'Assists';
   static const sortOptionName = 'Name';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:oystars_flutter_app/constants/colors.dart';
 import 'package:oystars_flutter_app/constants/strings.dart';
 import 'package:oystars_flutter_app/network/web_service.dart';
-import 'package:oystars_flutter_app/routes/players.dart';
+import 'package:oystars_flutter_app/routes/soccer/soccer_stats.dart';
 import 'package:oystars_flutter_app/utils/utils.dart';
 import 'package:oystars_flutter_app/widgets/home_button.dart';
 
@@ -70,7 +70,7 @@ class HomeState extends State<HomeScreen> {
       List<SoccerPlayer> players =
           await showLoadingSpinner(context, fetchSoccerPlayers());
       Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => PlayersScreen(
+          builder: (context) => SoccerStatsScreen(
                 players: players,
               )));
     } catch (e) {

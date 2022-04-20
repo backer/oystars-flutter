@@ -25,6 +25,20 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
   static const sortOptionName = 'Name';
 
   String sortOption = sortOptionGoals;
+  String selectedSeason = allTime;
+  List<SoccerPlayer> selectedPlayers = [];
+
+  Map<String, List<SoccerPlayer>> seasonPlayersMap = {};
+
+  @override
+  void initState() {
+    super.initState();
+    seasonPlayersMap[allTime] = widget.players;
+    for (var season in widget.seasons) {
+      seasonPlayersMap[seasonDisplayName(season.year, season.session)] =
+          season.players;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +48,9 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
       'Assists',
       'Number',
     ];
-    sortPlayers();
-    var values = playersToRows(widget.players);
-    debugPrint('playersToRows = ${values}');
+    selectedPlayers = seasonPlayersMap[selectedSeason]!;
+    sortSelectedPlayers();
+    var values = playersToRows(selectedPlayers);
 
     var screenPadding = MediaQuery.of(context).padding;
     var screenHeight = MediaQuery.of(context).size.height -
@@ -49,23 +63,38 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
     return Scaffold(
       appBar: appBar,
       body: Column(children: [
-        Container(
-          height: soccerPlayersDropdownRowHeight,
-          child: LabeledDropDown(
-            label: sortByLabel,
-            dropDownSelection: sortOption,
-            dropDownOptions: <String>[
-              sortOptionGoals,
-              sortOptionAssists,
-              sortOptionName
-            ],
-            onChanged: (String? newValue) {
-              setState(() {
-                sortOption = newValue!;
-              });
-            },
+        Row(children: [
+          Container(
+            height: soccerPlayersDropdownRowHeight,
+            child: LabeledDropDown(
+              label: sortByLabel,
+              dropDownSelection: sortOption,
+              dropDownOptions: <String>[
+                sortOptionGoals,
+                sortOptionAssists,
+                sortOptionName
+              ],
+              onChanged: (String? newValue) {
+                setState(() {
+                  sortOption = newValue!;
+                });
+              },
+            ),
           ),
-        ),
+          Container(
+            height: soccerPlayersDropdownRowHeight,
+            child: LabeledDropDown(
+              label: seasonLabel,
+              dropDownSelection: selectedSeason,
+              dropDownOptions: seasonPlayersMap.keys.toList(),
+              onChanged: (String? newValue) {
+                setState(() {
+                  selectedSeason = newValue!;
+                });
+              },
+            ),
+          )
+        ]),
         StatsTable(
           headers: headers,
           values: values,
@@ -93,22 +122,22 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
     return rows;
   }
 
-  sortPlayers() {
+  sortSelectedPlayers() {
     switch (sortOption) {
       case sortOptionAssists:
         {
-          widget.players.sort((a, b) => -a.assists.compareTo(b.assists));
+          selectedPlayers.sort((a, b) => -a.assists.compareTo(b.assists));
         }
         break;
       case sortOptionName:
         {
-          widget.players.sort((a, b) => a.name.compareTo(b.name));
+          selectedPlayers.sort((a, b) => a.name.compareTo(b.name));
         }
         break;
       case sortOptionGoals:
       default:
         {
-          widget.players.sort((a, b) => -a.goals.compareTo(b.goals));
+          selectedPlayers.sort((a, b) => -a.goals.compareTo(b.goals));
         }
     }
   }

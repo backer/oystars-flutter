@@ -8,6 +8,7 @@ const WELCOME_MESSAGE = 'Welcome to OyStars!';
 const SOCCER = 'Soccer';
 const FOOTBALL = 'Football';
 const PLAYERS = 'Players';
+const allTime = 'All Time';
 
 const jsonName = 'name';
 const jsonNumber = 'number';
@@ -19,3 +20,6 @@ const jsonSession = 'session';
 const jsonPlayers = 'players';
 
 const sortByLabel = 'Sort By: ';
+const seasonLabel = 'Season: ';
+
+var seasonDisplayName = (year, session) => '$year session $session';

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:oystars_flutter_app/constants/dimens.dart';
 import 'package:oystars_flutter_app/constants/strings.dart';
 import 'package:oystars_flutter_app/data.model/soccer_player.dart';
+import 'package:oystars_flutter_app/widgets/labeled_dropdown.dart';
 import 'package:oystars_flutter_app/widgets/stats_table.dart';
 
 import '../../data.model/soccer_season.dart';
@@ -50,44 +51,20 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
       body: Column(children: [
         Container(
           height: soccerPlayersDropdownRowHeight,
-          child: Row(children: [
-            Container(
-              margin: EdgeInsets.only(
-                  left: soccerPlayersSortDropdownMarginLeft,
-                  right: soccerPlayersSortDropdownMarginRight),
-              child: Text(sortByLabel),
-            ),
-            Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Colors.black, width: dropDownBorderWidth)),
-                padding: EdgeInsets.all(dropDownPadding),
-                child: DropdownButton<String>(
-                  value: sortOption,
-                  icon: const Icon(Icons.arrow_drop_down),
-                  elevation: dropDownButtonElevation,
-                  style: const TextStyle(color: Colors.purple),
-                  underline: Container(
-                    height: dropDownUnderlineHeight,
-                    color: Colors.purple,
-                  ),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      sortOption = newValue!;
-                    });
-                  },
-                  items: <String>[
-                    sortOptionGoals,
-                    sortOptionAssists,
-                    sortOptionName
-                  ].map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                )),
-          ]),
+          child: LabeledDropDown(
+            label: sortByLabel,
+            dropDownSelection: sortOption,
+            dropDownOptions: <String>[
+              sortOptionGoals,
+              sortOptionAssists,
+              sortOptionName
+            ],
+            onChanged: (String? newValue) {
+              setState(() {
+                sortOption = newValue!;
+              });
+            },
+          ),
         ),
         StatsTable(
           headers: headers,

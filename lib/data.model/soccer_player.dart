@@ -10,7 +10,7 @@ class SoccerPlayer {
 
   SoccerPlayer.fromJson(Map<String, dynamic> json)
       : name = json[jsonName],
-        number = json[jsonNumber],
+        number = json[jsonNumber] ?? 0,
         goals = json[jsonGoals],
         assists = json[jsonAssists];
 

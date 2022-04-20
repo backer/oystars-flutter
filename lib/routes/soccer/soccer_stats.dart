@@ -4,10 +4,15 @@ import 'package:oystars_flutter_app/constants/strings.dart';
 import 'package:oystars_flutter_app/data.model/soccer_player.dart';
 import 'package:oystars_flutter_app/widgets/stats_table.dart';
 
+import '../../data.model/soccer_season.dart';
+
 class SoccerStatsScreen extends StatefulWidget {
-  const SoccerStatsScreen({Key? key, required this.players}) : super(key: key);
+  const SoccerStatsScreen(
+      {Key? key, required this.players, required this.seasons})
+      : super(key: key);
 
   final List<SoccerPlayer> players;
+  final List<SoccerSeason> seasons;
 
   @override
   State<StatefulWidget> createState() => SoccerStatsState();

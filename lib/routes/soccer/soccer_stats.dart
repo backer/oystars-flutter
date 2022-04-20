@@ -23,6 +23,7 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
   static const sortOptionGoals = 'Goals';
   static const sortOptionAssists = 'Assists';
   static const sortOptionName = 'Name';
+  static const sortOptionCleanSheetHalves = 'CS Halves';
 
   String sortOption = sortOptionGoals;
   String selectedSeason = allTime;
@@ -46,8 +47,17 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
       playerNameHeader,
       goalsHeader,
       assistsHeader,
-      numberHeader,
+      selectedSeason == allTime ? numberHeader : cleanSheetHalvesHeader,
     ];
+    var sortOptions = <String>[
+      sortOptionGoals,
+      sortOptionAssists,
+      sortOptionName
+    ];
+    if (selectedSeason != allTime) {
+      sortOptions.add(sortOptionCleanSheetHalves);
+    }
+
     selectedPlayers = seasonPlayersMap[selectedSeason]!;
     sortSelectedPlayers();
     var values = playersToRows(selectedPlayers);
@@ -73,6 +83,8 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
               onChanged: (String? newValue) {
                 setState(() {
                   selectedSeason = newValue!;
+                  // switch sortOption back to default when changing season
+                  sortOption = sortOptionGoals;
                 });
               },
             ),
@@ -82,11 +94,7 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
             child: LabeledDropDown(
               label: sortByLabel,
               dropDownSelection: sortOption,
-              dropDownOptions: <String>[
-                sortOptionGoals,
-                sortOptionAssists,
-                sortOptionName
-              ],
+              dropDownOptions: sortOptions,
               onChanged: (String? newValue) {
                 setState(() {
                   sortOption = newValue!;
@@ -114,7 +122,12 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
       row.add(player.name);
       row.add(player.goals);
       row.add(player.assists);
-      row.add(player.number > 0 ? player.number : "");
+      // final row is number for all time stats or clean_sheet_halves for season stats
+      if (selectedSeason == allTime) {
+        row.add(player.number > 0 ? player.number : "");
+      } else {
+        row.add(player.cleanSheetHalves);
+      }
 
       rows.add(row);
     }
@@ -132,6 +145,12 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
       case sortOptionName:
         {
           selectedPlayers.sort((a, b) => a.name.compareTo(b.name));
+        }
+        break;
+      case sortOptionCleanSheetHalves:
+        {
+          selectedPlayers.sort(
+              (a, b) => -a.cleanSheetHalves.compareTo(b.cleanSheetHalves));
         }
         break;
       case sortOptionGoals:

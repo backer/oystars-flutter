@@ -5,19 +5,23 @@ class SoccerPlayer {
   final int number;
   final int goals;
   final int assists;
+  final int cleanSheetHalves;
 
-  SoccerPlayer(this.name, this.number, this.goals, this.assists);
+  SoccerPlayer(
+      this.name, this.number, this.goals, this.assists, this.cleanSheetHalves);
 
   SoccerPlayer.fromJson(Map<String, dynamic> json)
       : name = json[jsonName],
         number = json[jsonNumber] ?? 0,
         goals = json[jsonGoals],
-        assists = json[jsonAssists];
+        assists = json[jsonAssists],
+        cleanSheetHalves = json[jsonCleanSheetHalves] ?? 0;
 
   Map<String, dynamic> toJson() => {
         jsonName: name,
         jsonNumber: number,
         jsonGoals: goals,
-        jsonAssists: assists
+        jsonAssists: assists,
+        jsonCleanSheetHalves: cleanSheetHalves
       };
 }

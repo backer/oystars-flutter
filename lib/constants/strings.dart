@@ -14,11 +14,13 @@ const playerNameHeader = 'Player Name';
 const goalsHeader = 'Goals';
 const assistsHeader = 'Assists';
 const numberHeader = 'Number';
+const cleanSheetHalvesHeader = 'Clean Sheet Halves (GK)';
 
 const jsonName = 'name';
 const jsonNumber = 'number';
 const jsonGoals = 'goals';
 const jsonAssists = 'assists';
+const jsonCleanSheetHalves = 'clean_sheet_halves';
 const jsonId = 'id';
 const jsonYear = 'year';
 const jsonSession = 'session';

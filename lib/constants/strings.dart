@@ -10,6 +10,11 @@ const FOOTBALL = 'Football';
 const PLAYERS = 'Players';
 const allTime = 'All Time';
 
+const playerNameHeader = 'Player Name';
+const goalsHeader = 'Goals';
+const assistsHeader = 'Assists';
+const numberHeader = 'Number';
+
 const jsonName = 'name';
 const jsonNumber = 'number';
 const jsonGoals = 'goals';

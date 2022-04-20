@@ -43,10 +43,10 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
   @override
   Widget build(BuildContext context) {
     var headers = [
-      'Player Name',
-      'Goals',
-      'Assists',
-      'Number',
+      playerNameHeader,
+      goalsHeader,
+      assistsHeader,
+      numberHeader,
     ];
     selectedPlayers = seasonPlayersMap[selectedSeason]!;
     sortSelectedPlayers();
@@ -67,6 +67,19 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
           Container(
             height: soccerPlayersDropdownRowHeight,
             child: LabeledDropDown(
+              label: seasonLabel,
+              dropDownSelection: selectedSeason,
+              dropDownOptions: seasonPlayersMap.keys.toList(),
+              onChanged: (String? newValue) {
+                setState(() {
+                  selectedSeason = newValue!;
+                });
+              },
+            ),
+          ),
+          Container(
+            height: soccerPlayersDropdownRowHeight,
+            child: LabeledDropDown(
               label: sortByLabel,
               dropDownSelection: sortOption,
               dropDownOptions: <String>[
@@ -81,19 +94,6 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
               },
             ),
           ),
-          Container(
-            height: soccerPlayersDropdownRowHeight,
-            child: LabeledDropDown(
-              label: seasonLabel,
-              dropDownSelection: selectedSeason,
-              dropDownOptions: seasonPlayersMap.keys.toList(),
-              onChanged: (String? newValue) {
-                setState(() {
-                  selectedSeason = newValue!;
-                });
-              },
-            ),
-          )
         ]),
         StatsTable(
           headers: headers,

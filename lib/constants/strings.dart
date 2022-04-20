@@ -13,5 +13,9 @@ const jsonName = 'name';
 const jsonNumber = 'number';
 const jsonGoals = 'goals';
 const jsonAssists = 'assists';
+const jsonId = 'id';
+const jsonYear = 'year';
+const jsonSession = 'session';
+const jsonPlayers = 'players';
 
 const sortByLabel = 'Sort By: ';

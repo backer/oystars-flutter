@@ -21,7 +21,7 @@ class SoccerRecordsState extends State<SoccerRecordsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var values = recordsToRows(widget.records);
+    var values = recordsToRows(orderRecords(widget.records));
 
     var screenPadding = MediaQuery.of(context).padding;
     var screenHeight = MediaQuery.of(context).size.height -
@@ -70,5 +70,76 @@ class SoccerRecordsState extends State<SoccerRecordsScreen> {
     }
 
     return rows;
+  }
+
+  List<SoccerRecord> orderRecords(List<SoccerRecord> records) {
+    List<SoccerRecord> individual = [];
+    List<SoccerRecord> team = [];
+
+    for (var e in records) {
+      if (e.recordType == recordTypeIndividual) {
+        individual.add(e);
+      } else {
+        team.add(e);
+      }
+    }
+
+    // sort individual records based on criteria below
+    individual.sort((a, b) => compareIndividualRecords(a, b));
+    // display sorted individual records first and then team records
+    return [...individual, ...team];
+  }
+
+  int compareIndividualRecords(SoccerRecord a, SoccerRecord b) {
+    const String allTimeFragment = 'all time';
+    const String inASeason = 'in a season';
+    const String inAGame = 'in a game';
+    const String goalsLower = 'goals';
+    const String assistsLower = 'assists';
+
+    // prioritize all time records over season over indivual game
+    bool allTimeA = a.recordName.contains(allTimeFragment);
+    bool allTimeB = b.recordName.contains(allTimeFragment);
+    if (allTimeA && !allTimeB) {
+      return -1;
+    } else if (!allTimeA && allTimeB) {
+      return 1;
+    }
+
+    bool inSeasonA = a.recordName.contains(inASeason);
+    bool inSeasonB = b.recordName.contains(inASeason);
+    if (inSeasonA && !inSeasonB) {
+      return -1;
+    } else if (!inSeasonA && inSeasonB) {
+      return 1;
+    }
+
+    bool inGameA = a.recordName.contains(inAGame);
+    bool inGameB = b.recordName.contains(inAGame);
+    if (inGameA && !inGameB) {
+      return -1;
+    } else if (!inGameA && inGameB) {
+      return 1;
+    }
+
+    // if still even, prioritize goals over assists over other
+    bool goalsA = a.recordName.toLowerCase().contains(goalsLower);
+    bool goalsB = b.recordName.toLowerCase().contains(goalsLower);
+    if (goalsA && !goalsB) {
+      return -1;
+    } else if (!goalsA && goalsB) {
+      return 1;
+    }
+
+    bool assistsA = a.recordName.toLowerCase().contains(assistsLower);
+    bool assistsB = b.recordName.toLowerCase().contains(assistsLower);
+    if (assistsA && !assistsB) {
+      return -1;
+    } else if (!assistsA && assistsB) {
+      return 1;
+    }
+
+    // if still even, just return even
+    return 0;
   }
 }

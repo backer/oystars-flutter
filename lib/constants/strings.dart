@@ -39,5 +39,8 @@ const jsonRecordHolders = 'record_holders';
 const sortByLabel = 'Sort By: ';
 const seasonLabel = 'Season: ';
 
+const recordTypeIndividual = 'individual';
+const recordTypeTeam = 'team';
+
 String Function(dynamic year, dynamic session) seasonDisplayName =
     (year, session) => '$year session $session';

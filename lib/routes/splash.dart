@@ -24,7 +24,7 @@ class SplashState extends State<SplashScreen> {
         backgroundColor: Color(LOGO_BACKGROUND_COLOR),
         body: Center(
           child: Image(
-            image: AssetImage('$IMAGES_PATH$IMAGE_OYSTARS_LOGO'),
+            image: AssetImage('$imagesPath$imageOystarsLogo'),
             width: 512,
             height: 512,
           ),

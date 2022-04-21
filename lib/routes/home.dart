@@ -3,6 +3,7 @@ import 'package:oystars_flutter_app/constants/colors.dart';
 import 'package:oystars_flutter_app/constants/strings.dart';
 import 'package:oystars_flutter_app/data.model/soccer_season.dart';
 import 'package:oystars_flutter_app/network/web_service.dart';
+import 'package:oystars_flutter_app/routes/soccer/soccer_landing.dart';
 import 'package:oystars_flutter_app/routes/soccer/soccer_stats.dart';
 import 'package:oystars_flutter_app/utils/utils.dart';
 import 'package:oystars_flutter_app/widgets/home_button.dart';
@@ -30,7 +31,7 @@ class HomeState extends State<HomeScreen> {
     return Scaffold(
         backgroundColor: const Color(LOGO_BACKGROUND_COLOR),
         appBar: AppBar(
-          title: const Text(APP_NAME),
+          title: const Text(appName),
         ),
         body: Center(
           child: Column(
@@ -40,20 +41,20 @@ class HomeState extends State<HomeScreen> {
                 height: topMargin,
               ),
               Image(
-                image: AssetImage('$IMAGES_PATH$IMAGE_OYSTARS_LOGO'),
+                image: AssetImage('$imagesPath$imageOystarsLogo'),
                 height: iconSize,
                 width: iconSize,
               ),
               Text(
-                WELCOME_MESSAGE,
+                welcomeMessage,
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
               HomeButton(
-                label: SOCCER,
+                label: soccer,
                 onPressed: () => onSoccerPressed(context),
               ),
               HomeButton(
-                label: FOOTBALL,
+                label: football,
                 onPressed: () => onFootballPressed(),
               ),
             ]
@@ -67,36 +68,14 @@ class HomeState extends State<HomeScreen> {
   }
 
   onSoccerPressed(BuildContext context) async {
-    try {
-      List<dynamic> stats =
-          await showLoadingSpinner(context, fetchSoccerPlayersAndSeasons());
-
-      List<SoccerPlayer> players;
-      List<SoccerSeason> seasons;
-
-      try {
-        players = stats[0];
-        seasons = stats[1];
-
-        debugPrint('Players response: ${players.toString()}');
-        debugPrint('Seasons response: ${seasons.toString()}');
-
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) =>
-                SoccerStatsScreen(players: players, seasons: seasons)));
-      } catch (e) {
-        debugPrint(
-            'Error converting players and seasons response: ${e.toString()}');
-      }
-    } catch (e) {
-      debugPrint('Error fetching soccer players and seasons: ${e.toString()}');
-    }
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const SoccerLandingScreen()));
   }
 
   onFootballPressed() async {
     await showLoadingSpinner(
         context, Future.delayed(const Duration(seconds: 2)));
-    showSnackBar(context, '$FOOTBALL stats coming soon!');
+    showSnackBar(context, '$football stats coming soon!');
   }
 
   Future<List<dynamic>> fetchSoccerPlayersAndSeasons() {

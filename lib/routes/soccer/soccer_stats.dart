@@ -67,7 +67,7 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
         screenPadding.top -
         screenPadding.bottom;
     var appBar = AppBar(
-      title: const Text(PLAYERS),
+      title: const Text(players),
     );
 
     return Scaffold(

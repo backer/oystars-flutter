@@ -66,8 +66,10 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
     var screenHeight = MediaQuery.of(context).size.height -
         screenPadding.top -
         screenPadding.bottom;
+    var screenWidth = MediaQuery.of(context).size.width;
+    var columnWidth = screenWidth / 4;
     var appBar = AppBar(
-      title: const Text(players),
+      title: const Text('$soccer $stats'),
     );
 
     return Scaffold(
@@ -106,9 +108,10 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
         StatsTable(
           headers: headers,
           values: values,
-          height: screenHeight -
+          tableHeight: screenHeight -
               appBar.preferredSize.height -
               soccerPlayersDropdownRowHeight,
+          columnWidth: columnWidth,
         )
       ]),
     );

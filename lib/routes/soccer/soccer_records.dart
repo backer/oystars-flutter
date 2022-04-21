@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oystars_flutter_app/constants/dimens.dart';
 import 'package:oystars_flutter_app/constants/strings.dart';
 import 'package:oystars_flutter_app/data.model/soccer_record.dart';
 
@@ -26,13 +27,17 @@ class SoccerRecordsState extends State<SoccerRecordsScreen> {
     var screenHeight = MediaQuery.of(context).size.height -
         screenPadding.top -
         screenPadding.bottom;
+    var screenWidth = MediaQuery.of(context).size.width;
+    var columnWidth = screenWidth / 3;
 
     return Scaffold(
       appBar: appBar,
       body: StatsTable(
         headers: headers,
         values: values,
-        height: screenHeight - appBar.preferredSize.height,
+        tableHeight: screenHeight - appBar.preferredSize.height,
+        columnWidth: columnWidth,
+        rowHeight: statsItemHeight * 2,
       ),
     );
   }

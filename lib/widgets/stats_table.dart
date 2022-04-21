@@ -8,18 +8,20 @@ class StatsTable extends StatelessWidget {
       this.lockFirstColumn = true,
       required this.headers,
       required this.values,
-      required this.height})
+      required this.tableHeight,
+      required this.columnWidth,
+      this.rowHeight = statsItemHeight})
       : super(key: key);
 
   final bool lockFirstColumn;
   final List headers;
   final List<List> values;
-  final double height;
+  final double tableHeight;
+  final double columnWidth;
+  final double rowHeight;
 
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
-    var columnWidth = screenWidth * 0.25;
     var tableWidth = columnWidth * headers.length;
 
     return SingleChildScrollView(
@@ -31,7 +33,7 @@ class StatsTable extends StatelessWidget {
                 .map((e) => StatsItem(
                       value: e.toString(),
                       width: columnWidth,
-                      height: statsItemHeight,
+                      height: rowHeight,
                       isHeader: true,
                     ))
                 .toList()
@@ -39,13 +41,13 @@ class StatsTable extends StatelessWidget {
         ),
         Container(
             width: tableWidth,
-            height: height - statsItemHeight,
+            height: tableHeight - rowHeight,
             child: GridView(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: headers.length,
                   mainAxisSpacing: 0.0,
                   crossAxisSpacing: 0.0,
-                  childAspectRatio: columnWidth / statsItemHeight),
+                  childAspectRatio: columnWidth / rowHeight),
               children: [...getValuesWidgets(values, columnWidth)],
             ))
       ]),

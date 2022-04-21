@@ -35,7 +35,7 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
   void initState() {
     super.initState();
     seasonPlayersMap[allTime] = widget.players;
-    for (var season in widget.seasons) {
+    for (var season in widget.seasons.reversed) {
       seasonPlayersMap[seasonDisplayName(season.year, season.session)] =
           season.players;
     }

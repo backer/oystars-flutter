@@ -26,26 +26,33 @@ class SoccerAwardDisplay extends StatelessWidget {
                 fontWeight: FontWeight.bold),
           ),
         ),
-        ...award.winners
-            .map((e) => Row(
-                  children: [
-                    Container(
-                        alignment: Alignment.center,
-                        width: screenWidth / 2,
-                        height: awardWinnerItemHeight,
-                        child: Text(e.name),
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black))),
-                    Container(
-                        alignment: Alignment.center,
-                        width: screenWidth / 2,
-                        height: awardWinnerItemHeight,
-                        child: Text(seasonDisplayName(e.year, e.session)),
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black))),
-                  ],
-                ))
-            .toList()
+        Container(
+            decoration: const BoxDecoration(
+                border: Border(
+                    top: BorderSide(color: Colors.black),
+                    bottom: BorderSide(color: Colors.black))),
+            child: Column(children: [
+              ...award.winners
+                  .map((e) => Row(
+                        children: [
+                          Container(
+                              alignment: Alignment.center,
+                              width: screenWidth / 2,
+                              height: awardWinnerItemHeight,
+                              child: Text(e.name),
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.black))),
+                          Container(
+                              alignment: Alignment.center,
+                              width: screenWidth / 2,
+                              height: awardWinnerItemHeight,
+                              child: Text(seasonDisplayName(e.year, e.session)),
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.black))),
+                        ],
+                      ))
+                  .toList()
+            ]))
       ],
     );
   }

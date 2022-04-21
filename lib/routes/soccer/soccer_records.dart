@@ -37,7 +37,7 @@ class SoccerRecordsState extends State<SoccerRecordsScreen> {
         values: values,
         tableHeight: screenHeight - appBar.preferredSize.height,
         columnWidth: columnWidth,
-        rowHeight: statsItemHeight * 2,
+        rowHeight: statsItemHeight * 2.5,
       ),
     );
   }
@@ -51,18 +51,24 @@ class SoccerRecordsState extends State<SoccerRecordsScreen> {
       row.add(record.recordStat);
 
       String holdersDisplay = '';
-      for (var holder in record.recordHolders.keys) {
+      for (var i = 0; i < record.recordHolders.keys.length; i++) {
+        var holder = record.recordHolders.keys.toList()[i];
         List<String> sessions = record.recordHolders[holder]!;
 
         // construct sesisons display string
         String sessionsDisplay = '(${sessions[0]}';
         if (sessions.length > 1) {
-          for (var i = 1; i < sessions.length; i++) {
-            sessionsDisplay += ', ${sessions[i]}';
+          for (var j = 1; j < sessions.length; j++) {
+            sessionsDisplay += ', ${sessions[j]}';
           }
         }
         sessionsDisplay += ')';
-        holdersDisplay += '$holder $sessionsDisplay\n';
+
+        if (i > 0) {
+          // add new lines in between multiple record holders
+          holdersDisplay += '\n\n';
+        }
+        holdersDisplay += '$holder\n$sessionsDisplay';
       }
       row.add(holdersDisplay);
 

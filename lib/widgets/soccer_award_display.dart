@@ -22,7 +22,7 @@ class SoccerAwardDisplay extends StatelessWidget {
             award.award,
             style: const TextStyle(
                 fontSize: awardTitleFontSize,
-                color: colorGold,
+                color: Colors.purple,
                 fontWeight: FontWeight.bold),
           ),
         ),

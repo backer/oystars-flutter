@@ -35,6 +35,10 @@ const jsonRecordName = 'record_name';
 const jsonRecordStat = 'record_stat';
 const jsonRecordType = 'record_type';
 const jsonRecordHolders = 'record_holders';
+const jsonNotableStats = 'notable_stats';
+const jsonAward = 'award';
+const jsonDescription = 'description';
+const jsonWinners = 'winners';
 
 const sortByLabel = 'Sort By: ';
 const seasonLabel = 'Season: ';

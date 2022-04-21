@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+import 'package:oystars_flutter_app/data.model/soccer_award.dart';
 import 'package:oystars_flutter_app/data.model/soccer_player.dart';
 import 'package:oystars_flutter_app/data.model/soccer_record.dart';
 import 'package:oystars_flutter_app/data.model/soccer_season.dart';
@@ -11,6 +12,7 @@ const soccerPath = '/soccer';
 const playersPath = '/players';
 const seasonsPath = '/seasons';
 const recoredsPath = '/records';
+const awardsPath = '/awards';
 
 Future<List<SoccerPlayer>> fetchSoccerPlayers() {
   return http.get(Uri.parse('$baseUrl$soccerPath$playersPath')).then((value) {
@@ -27,6 +29,12 @@ Future<List<SoccerSeason>> fetchSoccerSeasons() {
 Future<List<SoccerRecord>> fetchSoccerRecords() {
   return http.get(Uri.parse('$baseUrl$soccerPath$recoredsPath')).then((value) {
     return decodeSoccerRecords(value);
+  });
+}
+
+Future<List<SoccerAward>> fetchSoccerAwards() {
+  return http.get(Uri.parse('$baseUrl$soccerPath$awardsPath')).then((value) {
+    return decodeSoccerAwards(value);
   });
 }
 
@@ -66,4 +74,16 @@ List<SoccerRecord> decodeSoccerRecords(http.Response response) {
   }
 
   return records;
+}
+
+List<SoccerAward> decodeSoccerAwards(http.Response response) {
+  List<SoccerAward> awards = [];
+  try {
+    var jsonArray = json.decode(response.body) as List;
+    awards = jsonArray.map((e) => SoccerAward.fromJson(e)).toList();
+  } catch (e) {
+    debugPrint('Error decoding soccer awards: ${e.toString()}');
+  }
+
+  return awards;
 }

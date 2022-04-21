@@ -12,6 +12,7 @@ const records = 'Records';
 const allTime = 'All Time';
 const stats = 'Stats';
 const awards = 'Awards';
+const awardWinners = 'Award Winners';
 
 const playerNameHeader = 'Player Name';
 const goalsHeader = 'Goals';

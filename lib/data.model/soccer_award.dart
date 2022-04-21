@@ -19,8 +19,7 @@ class SoccerAward {
         jsonWinners: winnersToJson()
       };
 
-  static List<SoccerAwardWinner> winnersFromJson(
-      List<Map<String, dynamic>> jsonArray) {
+  static List<SoccerAwardWinner> winnersFromJson(List<dynamic> jsonArray) {
     List<SoccerAwardWinner> awardWinners = [];
 
     for (var json in jsonArray) {

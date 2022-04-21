@@ -2,6 +2,11 @@ const double statsItemHeight = 40;
 const double statsItemVerticalSpacing = 10;
 const double statsItemHorizontalSpacing = 10;
 
+const double awardWinnerItemHeight = 40;
+const double awardsScreenVerticalSpacing = 20;
+const double awardTitleFontSize = 25;
+const double awardTitleMarginLeft = 10;
+
 const double soccerPlayersDropdownRowHeight = 100;
 const double dropdownLabelMarginLeft = 15;
 const double dropdownLabelMarginRight = 5;

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:oystars_flutter_app/constants/colors.dart';
 import 'package:oystars_flutter_app/constants/strings.dart';
+import 'package:oystars_flutter_app/data.model/soccer_award.dart';
 import 'package:oystars_flutter_app/data.model/soccer_season.dart';
 import 'package:oystars_flutter_app/network/web_service.dart';
+import 'package:oystars_flutter_app/routes/soccer/soccer_awards.dart';
 import 'package:oystars_flutter_app/routes/soccer/soccer_records.dart';
 import 'package:oystars_flutter_app/routes/soccer/soccer_stats.dart';
 import 'package:oystars_flutter_app/utils/utils.dart';
@@ -107,9 +109,14 @@ class SoccerLandingState extends State<SoccerLandingScreen> {
   }
 
   onAwardsPressed() async {
-    await showLoadingSpinner(
-        context, Future.delayed(const Duration(seconds: 2)));
-    showSnackBar(context, '$soccer $awards coming soon!');
+    try {
+      List<SoccerAward> awards =
+          await showLoadingSpinner(context, fetchSoccerAwards());
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => SoccerAwardsScreen(awards: awards)));
+    } catch (e) {
+      debugPrint('Error fetching soccer awards: ${e.toString()}');
+    }
   }
 
   Future<List<dynamic>> fetchSoccerPlayersAndSeasons() {

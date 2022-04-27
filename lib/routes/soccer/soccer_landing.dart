@@ -44,7 +44,8 @@ class SoccerLandingState extends State<SoccerLandingScreen> {
                 height: topMargin,
               ),
               Image(
-                image: AssetImage('$imagesPath$imageOystarsLogo'),
+                image: AssetImage('$imagesPath$imageSoccerIcon'),
+                color: Colors.white,
                 height: iconSize,
                 width: iconSize,
               ),

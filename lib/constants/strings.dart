@@ -1,6 +1,8 @@
 // ignore: constant_identifier_names
 const imagesPath = 'assets/images/';
 const imageOystarsLogo = 'oystars_logo.png';
+const imageSoccerIcon = 'soccer_motion_icon.png';
+const imageFootballIcon = 'football_motion_icon.png';
 
 const appName = 'OyStars';
 const welcomeMessage = 'Welcome to OyStars!';

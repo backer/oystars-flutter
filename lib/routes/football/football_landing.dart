@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:oystars_flutter_app/constants/colors.dart';
 import 'package:oystars_flutter_app/constants/strings.dart';
-import 'package:oystars_flutter_app/data.model/soccer_season.dart';
-import 'package:oystars_flutter_app/network/web_service.dart';
-import 'package:oystars_flutter_app/routes/soccer/soccer_landing.dart';
-import 'package:oystars_flutter_app/routes/soccer/soccer_stats.dart';
 import 'package:oystars_flutter_app/utils/utils.dart';
 import 'package:oystars_flutter_app/widgets/home_button.dart';
 
-import '../data.model/soccer_player.dart';
-import 'football/football_landing.dart';
-
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class FootballLandingScreen extends StatefulWidget {
+  const FootballLandingScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => HomeState();
+  State<FootballLandingScreen> createState() => FootballLandingState();
 }
 
-class HomeState extends State<HomeScreen> {
+class FootballLandingState extends State<FootballLandingScreen> {
   static const double verticalSpacing = 20;
 
   @override
@@ -32,7 +25,7 @@ class HomeState extends State<HomeScreen> {
     return Scaffold(
         backgroundColor: const Color(LOGO_BACKGROUND_COLOR),
         appBar: AppBar(
-          title: const Text(appName),
+          title: const Text(football),
         ),
         body: Center(
           child: Column(
@@ -42,21 +35,22 @@ class HomeState extends State<HomeScreen> {
                 height: topMargin,
               ),
               Image(
-                image: AssetImage('$imagesPath$imageOystarsLogo'),
+                image: AssetImage('$imagesPath$imageFootballIcon'),
+                color: Colors.white,
                 height: iconSize,
                 width: iconSize,
               ),
-              Text(
-                welcomeMessage,
-                style: TextStyle(color: Colors.white, fontSize: 20),
+              HomeButton(
+                label: stats,
+                onPressed: () => onStatsPressed(context),
               ),
               HomeButton(
-                label: soccer,
-                onPressed: () => onSoccerPressed(context),
+                label: records,
+                onPressed: () => onRecordsPressed(context),
               ),
               HomeButton(
-                label: football,
-                onPressed: () => onFootballPressed(),
+                label: awards,
+                onPressed: () => onAwardsPressed(),
               ),
             ]
                 .map((e) => Padding(
@@ -68,17 +62,21 @@ class HomeState extends State<HomeScreen> {
         ));
   }
 
-  onSoccerPressed(BuildContext context) async {
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const SoccerLandingScreen()));
+  onStatsPressed(BuildContext context) async {
+    await showLoadingSpinner(
+        context, Future.delayed(const Duration(seconds: 2)));
+    showSnackBar(context, '$football stats coming soon!');
   }
 
-  onFootballPressed() async {
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const FootballLandingScreen()));
+  onRecordsPressed(BuildContext context) async {
+    await showLoadingSpinner(
+        context, Future.delayed(const Duration(seconds: 2)));
+    showSnackBar(context, '$football records coming soon!');
   }
 
-  Future<List<dynamic>> fetchSoccerPlayersAndSeasons() {
-    return Future.wait([fetchSoccerPlayers(), fetchSoccerSeasons()]);
+  onAwardsPressed() async {
+    await showLoadingSpinner(
+        context, Future.delayed(const Duration(seconds: 2)));
+    showSnackBar(context, '$football awards coming soon!');
   }
 }

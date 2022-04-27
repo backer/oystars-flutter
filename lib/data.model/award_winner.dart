@@ -1,14 +1,14 @@
 import 'package:oystars_flutter_app/constants/strings.dart';
 
-class SoccerAwardWinner {
+class AwardWinner {
   final String name;
   final String notableStats;
   final int year;
   final int session;
 
-  SoccerAwardWinner(this.name, this.notableStats, this.year, this.session);
+  AwardWinner(this.name, this.notableStats, this.year, this.session);
 
-  SoccerAwardWinner.fromJson(Map<String, dynamic> json)
+  AwardWinner.fromJson(Map<String, dynamic> json)
       : name = json[jsonName],
         notableStats = json[jsonNotableStats],
         year = json[jsonYear],

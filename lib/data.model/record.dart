@@ -1,6 +1,6 @@
 import 'package:oystars_flutter_app/constants/strings.dart';
 
-class SoccerRecord {
+class Record {
   final String recordName;
   final String recordStat;
   final String recordType;
@@ -9,10 +9,10 @@ class SoccerRecord {
   // in the form of "{year}-s{session}"
   final Map<String, List<String>> recordHolders;
 
-  SoccerRecord(this.recordName, this.recordStat, this.recordType,
-      this.recordPeriod, this.recordHolders);
+  Record(this.recordName, this.recordStat, this.recordType, this.recordPeriod,
+      this.recordHolders);
 
-  SoccerRecord.fromJson(Map<String, dynamic> json)
+  Record.fromJson(Map<String, dynamic> json)
       : recordName = json[jsonRecordName],
         recordStat = json[jsonRecordStat],
         recordType = json[jsonRecordType],

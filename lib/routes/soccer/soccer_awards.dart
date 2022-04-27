@@ -7,7 +7,7 @@ import 'package:oystars_flutter_app/widgets/soccer_award_display.dart';
 class SoccerAwardsScreen extends StatefulWidget {
   const SoccerAwardsScreen({Key? key, required this.awards}) : super(key: key);
 
-  final List<SoccerAward> awards;
+  final List<Award> awards;
 
   @override
   State<StatefulWidget> createState() => SoccerAwardsState();

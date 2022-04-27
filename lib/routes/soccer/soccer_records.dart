@@ -6,7 +6,7 @@ import 'package:oystars_flutter_app/data.model/record.dart';
 import '../../widgets/stats_table.dart';
 
 class SoccerRecordsScreen extends StatefulWidget {
-  final List<SoccerRecord> records;
+  final List<Record> records;
 
   const SoccerRecordsScreen({Key? key, required this.records})
       : super(key: key);
@@ -42,7 +42,7 @@ class SoccerRecordsState extends State<SoccerRecordsScreen> {
     );
   }
 
-  List<List<dynamic>> recordsToRows(List<SoccerRecord> records) {
+  List<List<dynamic>> recordsToRows(List<Record> records) {
     List<List<dynamic>> rows = [];
 
     for (var record in records) {
@@ -78,9 +78,9 @@ class SoccerRecordsState extends State<SoccerRecordsScreen> {
     return rows;
   }
 
-  List<SoccerRecord> orderRecords(List<SoccerRecord> records) {
-    List<SoccerRecord> individual = [];
-    List<SoccerRecord> team = [];
+  List<Record> orderRecords(List<Record> records) {
+    List<Record> individual = [];
+    List<Record> team = [];
 
     for (var e in records) {
       if (e.recordType == recordTypeIndividual) {
@@ -96,7 +96,7 @@ class SoccerRecordsState extends State<SoccerRecordsScreen> {
     return [...individual, ...team];
   }
 
-  int compareIndividualRecords(SoccerRecord a, SoccerRecord b) {
+  int compareIndividualRecords(Record a, Record b) {
     const String allTimeFragment = 'all time';
     const String inASeason = 'in a season';
     const String inAGame = 'in a game';

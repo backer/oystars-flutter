@@ -3,15 +3,17 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:oystars_flutter_app/data.model/award.dart';
+import 'package:oystars_flutter_app/data.model/football_season.dart';
 import 'package:oystars_flutter_app/data.model/soccer_player.dart';
 import 'package:oystars_flutter_app/data.model/record.dart';
 import 'package:oystars_flutter_app/data.model/soccer_season.dart';
 
 const baseUrl = 'https://5c75f3ks0k.execute-api.us-east-1.amazonaws.com';
 const soccerPath = '/soccer';
+const footballPath = '/football';
 const playersPath = '/players';
 const seasonsPath = '/seasons';
-const recoredsPath = '/records';
+const recordsPath = '/records';
 const awardsPath = '/awards';
 
 Future<List<SoccerPlayer>> fetchSoccerPlayers() {
@@ -26,15 +28,33 @@ Future<List<SoccerSeason>> fetchSoccerSeasons() {
   });
 }
 
-Future<List<SoccerRecord>> fetchSoccerRecords() {
-  return http.get(Uri.parse('$baseUrl$soccerPath$recoredsPath')).then((value) {
-    return decodeSoccerRecords(value);
+Future<List<FootballSeason>> fetchFootballSeasons() {
+  return http.get(Uri.parse('$baseUrl$footballPath$seasonsPath')).then((value) {
+    return decodeFootballSeasons(value);
   });
 }
 
-Future<List<SoccerAward>> fetchSoccerAwards() {
+Future<List<Record>> fetchSoccerRecords() {
+  return http.get(Uri.parse('$baseUrl$soccerPath$recordsPath')).then((value) {
+    return decodeRecords(value);
+  });
+}
+
+Future<List<Record>> fetchFootballRecords() {
+  return http.get(Uri.parse('$baseUrl$footballPath$recordsPath')).then((value) {
+    return decodeRecords(value);
+  });
+}
+
+Future<List<Award>> fetchSoccerAwards() {
   return http.get(Uri.parse('$baseUrl$soccerPath$awardsPath')).then((value) {
-    return decodeSoccerAwards(value);
+    return decodeAwards(value);
+  });
+}
+
+Future<List<Award>> fetchFootballAwards() {
+  return http.get(Uri.parse('$baseUrl$footballPath$awardsPath')).then((value) {
+    return decodeAwards(value);
   });
 }
 
@@ -64,11 +84,24 @@ List<SoccerSeason> decodeSoccerSeasons(http.Response response) {
   return seasons;
 }
 
-List<SoccerRecord> decodeSoccerRecords(http.Response response) {
-  List<SoccerRecord> records = [];
+List<FootballSeason> decodeFootballSeasons(http.Response response) {
+  List<FootballSeason> seasons = [];
+
   try {
     var jsonArray = json.decode(response.body) as List;
-    records = jsonArray.map((e) => SoccerRecord.fromJson(e)).toList();
+    seasons = jsonArray.map((e) => FootballSeason.fromJson(e)).toList();
+  } catch (e) {
+    debugPrint('Error decoding football seasons: ${e.toString()}');
+  }
+
+  return seasons;
+}
+
+List<Record> decodeRecords(http.Response response) {
+  List<Record> records = [];
+  try {
+    var jsonArray = json.decode(response.body) as List;
+    records = jsonArray.map((e) => Record.fromJson(e)).toList();
   } catch (e) {
     debugPrint('Error decoding soccer records: ${e.toString()}');
   }
@@ -76,11 +109,11 @@ List<SoccerRecord> decodeSoccerRecords(http.Response response) {
   return records;
 }
 
-List<SoccerAward> decodeSoccerAwards(http.Response response) {
-  List<SoccerAward> awards = [];
+List<Award> decodeAwards(http.Response response) {
+  List<Award> awards = [];
   try {
     var jsonArray = json.decode(response.body) as List;
-    awards = jsonArray.map((e) => SoccerAward.fromJson(e)).toList();
+    awards = jsonArray.map((e) => Award.fromJson(e)).toList();
   } catch (e) {
     debugPrint('Error decoding soccer awards: ${e.toString()}');
   }

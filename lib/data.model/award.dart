@@ -1,14 +1,14 @@
 import 'package:oystars_flutter_app/constants/strings.dart';
 import 'package:oystars_flutter_app/data.model/award_winner.dart';
 
-class SoccerAward {
+class Award {
   final String award;
   final String description;
-  final List<SoccerAwardWinner> winners;
+  final List<AwardWinner> winners;
 
-  SoccerAward(this.award, this.description, this.winners);
+  Award(this.award, this.description, this.winners);
 
-  SoccerAward.fromJson(Map<String, dynamic> json)
+  Award.fromJson(Map<String, dynamic> json)
       : award = json[jsonAward],
         description = json[jsonDescription],
         winners = winnersFromJson(json[jsonWinners]);
@@ -19,11 +19,11 @@ class SoccerAward {
         jsonWinners: winnersToJson()
       };
 
-  static List<SoccerAwardWinner> winnersFromJson(List<dynamic> jsonArray) {
-    List<SoccerAwardWinner> awardWinners = [];
+  static List<AwardWinner> winnersFromJson(List<dynamic> jsonArray) {
+    List<AwardWinner> awardWinners = [];
 
     for (var json in jsonArray) {
-      awardWinners.add(SoccerAwardWinner.fromJson(json));
+      awardWinners.add(AwardWinner.fromJson(json));
     }
 
     return awardWinners;

@@ -100,7 +100,7 @@ class SoccerLandingState extends State<SoccerLandingScreen> {
 
   onRecordsPressed(BuildContext context) async {
     try {
-      List<SoccerRecord> records =
+      List<Record> records =
           await showLoadingSpinner(context, fetchSoccerRecords());
       Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => SoccerRecordsScreen(records: records)));
@@ -111,7 +111,7 @@ class SoccerLandingState extends State<SoccerLandingScreen> {
 
   onAwardsPressed() async {
     try {
-      List<SoccerAward> awards =
+      List<Award> awards =
           await showLoadingSpinner(context, fetchSoccerAwards());
       Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => SoccerAwardsScreen(awards: awards)));

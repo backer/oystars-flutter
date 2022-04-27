@@ -7,7 +7,7 @@ import 'package:oystars_flutter_app/data.model/award.dart';
 class SoccerAwardDisplay extends StatelessWidget {
   const SoccerAwardDisplay({Key? key, required this.award}) : super(key: key);
 
-  final SoccerAward award;
+  final Award award;
 
   @override
   Widget build(BuildContext context) {

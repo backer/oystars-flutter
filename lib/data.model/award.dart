@@ -1,5 +1,5 @@
 import 'package:oystars_flutter_app/constants/strings.dart';
-import 'package:oystars_flutter_app/data.model/soccer_award_winner.dart';
+import 'package:oystars_flutter_app/data.model/award_winner.dart';
 
 class SoccerAward {
   final String award;

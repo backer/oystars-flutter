@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-import 'package:oystars_flutter_app/data.model/soccer_award.dart';
+import 'package:oystars_flutter_app/data.model/award.dart';
 import 'package:oystars_flutter_app/data.model/soccer_player.dart';
-import 'package:oystars_flutter_app/data.model/soccer_record.dart';
+import 'package:oystars_flutter_app/data.model/record.dart';
 import 'package:oystars_flutter_app/data.model/soccer_season.dart';
 
 const baseUrl = 'https://5c75f3ks0k.execute-api.us-east-1.amazonaws.com';

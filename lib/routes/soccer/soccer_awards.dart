@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oystars_flutter_app/constants/dimens.dart';
 import 'package:oystars_flutter_app/constants/strings.dart';
-import 'package:oystars_flutter_app/data.model/soccer_award.dart';
+import 'package:oystars_flutter_app/data.model/award.dart';
 import 'package:oystars_flutter_app/widgets/soccer_award_display.dart';
 
 class SoccerAwardsScreen extends StatefulWidget {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:oystars_flutter_app/constants/colors.dart';
 import 'package:oystars_flutter_app/constants/dimens.dart';
 import 'package:oystars_flutter_app/constants/strings.dart';
-import 'package:oystars_flutter_app/data.model/soccer_award.dart';
+import 'package:oystars_flutter_app/data.model/award.dart';
 
 class SoccerAwardDisplay extends StatelessWidget {
   const SoccerAwardDisplay({Key? key, required this.award}) : super(key: key);

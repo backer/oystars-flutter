@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oystars_flutter_app/constants/colors.dart';
 import 'package:oystars_flutter_app/constants/strings.dart';
-import 'package:oystars_flutter_app/data.model/soccer_award.dart';
+import 'package:oystars_flutter_app/data.model/award.dart';
 import 'package:oystars_flutter_app/data.model/soccer_season.dart';
 import 'package:oystars_flutter_app/network/web_service.dart';
 import 'package:oystars_flutter_app/routes/soccer/soccer_awards.dart';
@@ -11,7 +11,7 @@ import 'package:oystars_flutter_app/utils/utils.dart';
 import 'package:oystars_flutter_app/widgets/home_button.dart';
 
 import '../../data.model/soccer_player.dart';
-import '../../data.model/soccer_record.dart';
+import '../../data.model/record.dart';
 
 class SoccerLandingScreen extends StatefulWidget {
   const SoccerLandingScreen({Key? key}) : super(key: key);

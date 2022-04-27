@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oystars_flutter_app/constants/dimens.dart';
 import 'package:oystars_flutter_app/constants/strings.dart';
-import 'package:oystars_flutter_app/data.model/soccer_record.dart';
+import 'package:oystars_flutter_app/data.model/record.dart';
 
 import '../../widgets/stats_table.dart';
 

@@ -33,9 +33,11 @@ class FootballStatsState extends State<FootballStatsScreen> {
   @override
   void initState() {
     super.initState();
+    // sort seasons by year and session
+    widget.seasons.sort(((a, b) => -compareSeasons(a, b)));
     seasonPlayersMap[allTime] = calculateAllTimeStats(widget.seasons);
     yardsRecordedMap[allTime] = true;
-    for (var season in widget.seasons.reversed) {
+    for (var season in widget.seasons) {
       seasonPlayersMap[seasonDisplayName(season.year, season.session)] =
           season.players;
       yardsRecordedMap[seasonDisplayName(season.year, season.session)] =
@@ -194,13 +196,13 @@ class FootballStatsState extends State<FootballStatsScreen> {
         (a.passingTouchdowns * passingTouchdownValue) +
             (a.passingInterceptions * passingInterceptionValue) +
             (a.passingPats * passingPatValue) +
-            (a.passingYards + passingYardValue);
+            (a.passingYards * passingYardValue);
 
     double passingFantasyPointsB =
         (b.passingTouchdowns * passingTouchdownValue) +
             (b.passingInterceptions * passingInterceptionValue) +
             (b.passingPats * passingPatValue) +
-            (b.passingYards + passingYardValue);
+            (b.passingYards * passingYardValue);
 
     return passingFantasyPointsA.compareTo(passingFantasyPointsB);
   }
@@ -240,10 +242,19 @@ class FootballStatsState extends State<FootballStatsScreen> {
 
     double defensiveFantasyPointsB =
         (b.defensiveTouchdowns * defensiveTouchdownValue) +
-            (b.defensiveInterceptions + defensiveInterceptionValue) +
-            (b.defensiveSacks + defensiveSackValue);
+            (b.defensiveInterceptions * defensiveInterceptionValue) +
+            (b.defensiveSacks * defensiveSackValue);
 
     return defensiveFantasyPointsA.compareTo(defensiveFantasyPointsB);
+  }
+
+  // sort seasons based on year and session number
+  int compareSeasons(FootballSeason a, FootballSeason b) {
+    var result = a.year.compareTo(b.year);
+    if (result == 0) {
+      result = a.session.compareTo(b.session);
+    }
+    return result;
   }
 
   List<FootballPlayer> calculateAllTimeStats(List<FootballSeason> seasons) {
@@ -254,22 +265,24 @@ class FootballStatsState extends State<FootballStatsScreen> {
         if (allTimePlayers.containsKey(player.name)) {
           // add all of player's stats to existing entry
           FootballPlayer sourcePlayer = allTimePlayers[player.name]!;
-          sourcePlayer.passingTouchdowns += player.passingTouchdowns;
-          sourcePlayer.passingInterceptions = player.passingInterceptions;
-          sourcePlayer.passingPats += player.passingPats;
-          sourcePlayer.passingCompletions += player.passingCompletions;
-          sourcePlayer.passingYards += player.passingYards;
+          FootballPlayer updatedPlayer = FootballPlayer(
+            player.name,
+            sourcePlayer.fantasyPoints + player.fantasyPoints,
+            sourcePlayer.passingTouchdowns + player.passingTouchdowns,
+            sourcePlayer.passingInterceptions + player.passingInterceptions,
+            sourcePlayer.passingPats + player.passingPats,
+            sourcePlayer.passingYards + player.passingYards,
+            sourcePlayer.passingCompletions + player.passingCompletions,
+            sourcePlayer.receivingTouchdowns + player.receivingTouchdowns,
+            sourcePlayer.receivingPats + player.receivingPats,
+            sourcePlayer.receivingYards + player.receivingYards,
+            sourcePlayer.receivingReceptions + player.receivingReceptions,
+            sourcePlayer.defensiveSacks + player.defensiveSacks,
+            sourcePlayer.defensiveInterceptions + player.defensiveInterceptions,
+            sourcePlayer.defensiveTouchdowns + player.defensiveTouchdowns,
+          );
 
-          sourcePlayer.receivingTouchdowns += player.receivingTouchdowns;
-          sourcePlayer.receivingPats += player.receivingPats;
-          sourcePlayer.receivingReceptions += player.receivingReceptions;
-          sourcePlayer.receivingYards += player.receivingYards;
-
-          sourcePlayer.defensiveSacks += player.defensiveSacks;
-          sourcePlayer.defensiveInterceptions += player.defensiveInterceptions;
-          sourcePlayer.defensiveTouchdowns += player.defensiveTouchdowns;
-
-          allTimePlayers[player.name] = sourcePlayer;
+          allTimePlayers[player.name] = updatedPlayer;
         } else {
           allTimePlayers[player.name] = player;
         }

@@ -25,6 +25,18 @@ const recordNameHeader = 'Record Name';
 const recordStatHeader = 'Record Stat';
 const recordHoldersHeader = 'Record Holder(s)';
 
+const fantasyPointsHeader = 'Fantasy Points';
+const passing = 'Passing';
+const receiving = 'Receiving';
+const defensive = 'Defensive';
+const touchdowns = 'Touchdowns';
+const interceptions = 'Interceptions';
+const yards = 'Yards';
+const patsHeader = 'PATs Converted';
+const sacks = 'Sacks';
+const completions = 'Completions';
+const receptions = 'Receptions';
+
 const jsonName = 'name';
 const jsonNumber = 'number';
 const jsonGoals = 'goals';
@@ -64,6 +76,7 @@ const jsonReceivingReceptions = 'receiving_receptions';
 const jsonDefensiveSacks = 'defensive_sacks';
 const jsonDefensiveInterceptions = 'defensive_interceptions';
 const jsonDefensiveTouchdowns = 'defensive_touchdowns';
+const jsonYardsRecorded = 'yards_recorded';
 
 const sortByLabel = 'Sort By: ';
 const seasonLabel = 'Season: ';

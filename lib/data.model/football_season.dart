@@ -11,9 +11,10 @@ class FootballSeason {
   final String teamName;
   final List<FootballPlayer> players;
   final List<FootballGame> games;
+  final bool yardsRecorded;
 
   FootballSeason(this.id, this.year, this.session, this.record, this.teamName,
-      this.players, this.games);
+      this.players, this.games, this.yardsRecorded);
 
   FootballSeason.fromJson(Map<String, dynamic> json)
       : id = json[jsonId],
@@ -22,7 +23,8 @@ class FootballSeason {
         record = json[jsonRecord],
         teamName = json[jsonTeamName],
         players = playersObjectToList(json[jsonPlayers]),
-        games = gamesFromJson(json[jsonGames]);
+        games = gamesFromJson(json[jsonGames]),
+        yardsRecorded = json[jsonYardsRecorded] ?? false;
 
   Map<String, dynamic> toJson() => {
         jsonId: id,
@@ -31,7 +33,8 @@ class FootballSeason {
         jsonRecord: record,
         jsonTeamName: teamName,
         jsonPlayers: playersListToJsonObject(players),
-        jsonGames: gamesToJson()
+        jsonGames: gamesToJson(),
+        jsonYardsRecorded: yardsRecorded
       };
 
   // convert players object in response to list of players

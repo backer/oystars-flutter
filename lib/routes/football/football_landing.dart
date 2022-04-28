@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:oystars_flutter_app/constants/colors.dart';
 import 'package:oystars_flutter_app/constants/strings.dart';
+import 'package:oystars_flutter_app/data.model/football_season.dart';
 import 'package:oystars_flutter_app/network/web_service.dart';
+import 'package:oystars_flutter_app/routes/football/football_stats_screen.dart';
 import 'package:oystars_flutter_app/utils/utils.dart';
 import 'package:oystars_flutter_app/widgets/home_button.dart';
 
@@ -69,9 +71,16 @@ class FootballLandingState extends State<FootballLandingScreen> {
   }
 
   onStatsPressed(BuildContext context) async {
-    await showLoadingSpinner(
-        context, Future.delayed(const Duration(seconds: 2)));
-    showSnackBar(context, '$football stats coming soon!');
+    try {
+      List<FootballSeason> seasons =
+          await showLoadingSpinner(context, fetchFootballSeasons());
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => FootballStatsScreen(
+                seasons: seasons,
+              )));
+    } catch (e) {
+      debugPrint('Error fetching football seasons: ${e.toString()}');
+    }
   }
 
   onRecordsPressed(BuildContext context) async {

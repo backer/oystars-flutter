@@ -4,8 +4,8 @@ import 'package:oystars_flutter_app/constants/dimens.dart';
 import 'package:oystars_flutter_app/constants/strings.dart';
 import 'package:oystars_flutter_app/data.model/award.dart';
 
-class SoccerAwardDisplay extends StatelessWidget {
-  const SoccerAwardDisplay({Key? key, required this.award}) : super(key: key);
+class AwardDisplay extends StatelessWidget {
+  const AwardDisplay({Key? key, required this.award}) : super(key: key);
 
   final Award award;
 

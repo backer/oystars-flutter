@@ -2,18 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:oystars_flutter_app/constants/dimens.dart';
 import 'package:oystars_flutter_app/constants/strings.dart';
 import 'package:oystars_flutter_app/data.model/award.dart';
-import 'package:oystars_flutter_app/widgets/soccer_award_display.dart';
+import 'package:oystars_flutter_app/widgets/award_display.dart';
 
-class SoccerAwardsScreen extends StatefulWidget {
-  const SoccerAwardsScreen({Key? key, required this.awards}) : super(key: key);
+class AwardsScreen extends StatefulWidget {
+  const AwardsScreen({Key? key, required this.awards, required this.sport})
+      : super(key: key);
 
   final List<Award> awards;
+  final String sport;
 
   @override
-  State<StatefulWidget> createState() => SoccerAwardsState();
+  State<StatefulWidget> createState() => AwardsState();
 }
 
-class SoccerAwardsState extends State<SoccerAwardsScreen> {
+class AwardsState extends State<AwardsScreen> {
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
@@ -23,7 +25,7 @@ class SoccerAwardsState extends State<SoccerAwardsScreen> {
         screenPadding.bottom;
 
     var appBar = AppBar(
-      title: const Text('$soccer $awardWinners'),
+      title: Text('${widget.sport} $awardWinners'),
     );
 
     return Scaffold(
@@ -37,7 +39,7 @@ class SoccerAwardsState extends State<SoccerAwardsScreen> {
                   .map((e) => Padding(
                       padding: const EdgeInsets.only(
                           top: awardsScreenVerticalSpacing),
-                      child: SoccerAwardDisplay(award: e)))
+                      child: AwardDisplay(award: e)))
                   .toList()
             ]),
           )),

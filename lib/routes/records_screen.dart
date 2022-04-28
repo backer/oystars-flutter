@@ -3,20 +3,20 @@ import 'package:oystars_flutter_app/constants/dimens.dart';
 import 'package:oystars_flutter_app/constants/strings.dart';
 import 'package:oystars_flutter_app/data.model/record.dart';
 
-import '../../widgets/stats_table.dart';
+import '../widgets/stats_table.dart';
 
-class SoccerRecordsScreen extends StatefulWidget {
+class RecordsScreen extends StatefulWidget {
   final List<Record> records;
+  final String sport;
 
-  const SoccerRecordsScreen({Key? key, required this.records})
+  const RecordsScreen({Key? key, required this.records, required this.sport})
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => SoccerRecordsState();
+  State<StatefulWidget> createState() => RecordsState();
 }
 
-class SoccerRecordsState extends State<SoccerRecordsScreen> {
-  var appBar = AppBar(title: const Text('$soccer $records'));
+class RecordsState extends State<RecordsScreen> {
   var headers = [recordNameHeader, recordStatHeader, recordHoldersHeader];
 
   @override
@@ -29,6 +29,8 @@ class SoccerRecordsState extends State<SoccerRecordsScreen> {
         screenPadding.bottom;
     var screenWidth = MediaQuery.of(context).size.width;
     var columnWidth = screenWidth / 3;
+
+    var appBar = AppBar(title: Text('${widget.sport} $records'));
 
     return Scaffold(
       appBar: appBar,

@@ -6,7 +6,9 @@ import 'package:oystars_flutter_app/utils/utils.dart';
 import 'package:oystars_flutter_app/widgets/home_button.dart';
 
 import '../../data.model/award.dart';
+import '../../data.model/record.dart';
 import '../awards_screen.dart';
+import '../records_screen.dart';
 
 class FootballLandingScreen extends StatefulWidget {
   const FootballLandingScreen({Key? key}) : super(key: key);
@@ -73,9 +75,15 @@ class FootballLandingState extends State<FootballLandingScreen> {
   }
 
   onRecordsPressed(BuildContext context) async {
-    await showLoadingSpinner(
-        context, Future.delayed(const Duration(seconds: 2)));
-    showSnackBar(context, '$football records coming soon!');
+    try {
+      List<Record> records =
+          await showLoadingSpinner(context, fetchFootballRecords());
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) =>
+              RecordsScreen(records: records, sport: football)));
+    } catch (e) {
+      debugPrint('Error fetching football records: ${e.toString()}');
+    }
   }
 
   onAwardsPressed() async {

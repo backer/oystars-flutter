@@ -5,7 +5,7 @@ import 'package:oystars_flutter_app/data.model/award.dart';
 import 'package:oystars_flutter_app/data.model/soccer_season.dart';
 import 'package:oystars_flutter_app/network/web_service.dart';
 import 'package:oystars_flutter_app/routes/awards_screen.dart';
-import 'package:oystars_flutter_app/routes/soccer/soccer_records.dart';
+import 'package:oystars_flutter_app/routes/records_screen.dart';
 import 'package:oystars_flutter_app/routes/soccer/soccer_stats.dart';
 import 'package:oystars_flutter_app/utils/utils.dart';
 import 'package:oystars_flutter_app/widgets/home_button.dart';
@@ -103,7 +103,8 @@ class SoccerLandingState extends State<SoccerLandingScreen> {
       List<Record> records =
           await showLoadingSpinner(context, fetchSoccerRecords());
       Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => SoccerRecordsScreen(records: records)));
+          builder: (context) =>
+              RecordsScreen(records: records, sport: soccer)));
     } catch (e) {
       debugPrint('Error fetching soccer records: ${e.toString()}');
     }

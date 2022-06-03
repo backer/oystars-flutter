@@ -16,7 +16,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class SplashState extends State<SplashScreen> {
-  static const splashTimeoutSeconds = 3;
+  static const splashTimeoutSeconds = 2;
 
   @override
   Widget build(BuildContext context) {

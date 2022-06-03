@@ -17,6 +17,7 @@ Future<dynamic> showLoadingSpinner(
   BuildContext dialogContext = context;
   showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (context) {
         dialogContext = context;
         return Dialog(

@@ -34,7 +34,7 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
   @override
   void initState() {
     super.initState();
-    seasonPlayersMap[allTime] = widget.players;
+    seasonPlayersMap[allTime] = calculateAllTimeStats(widget.seasons);
     for (var season in widget.seasons.reversed) {
       seasonPlayersMap[seasonDisplayName(season.year, season.session)] =
           season.players;
@@ -200,5 +200,40 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
     }
 
     return result;
+  }
+
+  List<SoccerPlayer> calculateAllTimeStats(List<SoccerSeason> seasons) {
+    Map<String, SoccerPlayer> allTimePlayers = {};
+
+    for (var season in seasons) {
+      for (var player in season.players) {
+        if (allTimePlayers.containsKey(player.name)) {
+          // add all of player's stats to existing entry
+          SoccerPlayer sourcePlayer = allTimePlayers[player.name]!;
+          SoccerPlayer updatedPlayer = SoccerPlayer(
+              player.name,
+              getNumberFromPlayersReference(player.name, widget.players),
+              sourcePlayer.goals + player.goals,
+              sourcePlayer.assists + player.assists,
+              sourcePlayer.cleanSheetHalves + player.cleanSheetHalves);
+
+          allTimePlayers[player.name] = updatedPlayer;
+        } else {
+          allTimePlayers[player.name] = player;
+        }
+      }
+    }
+
+    return allTimePlayers.values.toList();
+  }
+
+  getNumberFromPlayersReference(String name, List<SoccerPlayer> players) {
+    for (var player in players) {
+      if (player.name == name) {
+        return player.number;
+      }
+    }
+
+    return 0;
   }
 }

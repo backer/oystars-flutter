@@ -7,7 +7,7 @@ const double awardsScreenVerticalSpacing = 20;
 const double awardTitleFontSize = 25;
 const double awardTitleMarginLeft = 10;
 
-const double soccerPlayersDropdownRowHeight = 100;
+const double statsDropdownRowHeight = 100;
 const double dropdownLabelMarginLeft = 15;
 const double dropdownLabelMarginRight = 5;
 const int dropDownButtonElevation = 16;

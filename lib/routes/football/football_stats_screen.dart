@@ -6,6 +6,7 @@ import 'package:oystars_flutter_app/widgets/labeled_dropdown.dart';
 import 'package:oystars_flutter_app/widgets/stats_table.dart';
 
 import '../../data.model/football_player.dart';
+import '../../widgets/double_header_stats_table.dart';
 
 class FootballStatsScreen extends StatefulWidget {
   const FootballStatsScreen({Key? key, required this.seasons})
@@ -47,18 +48,13 @@ class FootballStatsState extends State<FootballStatsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var headers = [
-      playerNameHeader,
-      fantasyPointsHeader,
-      '$passing $touchdowns',
-      '$passing $interceptions',
-      '$passing $patsHeader',
-      '$receiving $touchdowns',
-      '$receiving $patsHeader',
-      '$defensive $sacks',
-      '$defensive $interceptions',
-      '$defensive $touchdowns'
-    ];
+    Map<String, List<String>> headersMap = {
+      playerNameHeader: [],
+      fantasyPointsHeader: [],
+      passing: [touchdowns, interceptions, patsHeader],
+      receiving: [touchdowns, patsHeader],
+      defensive: [sacks, interceptions, touchdowns]
+    };
 
     var sortOptions = <String>[
       sortOptionFantasyPoints,
@@ -87,7 +83,7 @@ class FootballStatsState extends State<FootballStatsScreen> {
       body: Column(children: [
         Row(children: [
           Container(
-            height: soccerPlayersDropdownRowHeight,
+            height: statsDropdownRowHeight,
             child: LabeledDropDown(
               label: seasonLabel,
               dropDownSelection: selectedSeason,
@@ -102,7 +98,7 @@ class FootballStatsState extends State<FootballStatsScreen> {
             ),
           ),
           Container(
-            height: soccerPlayersDropdownRowHeight,
+            height: statsDropdownRowHeight,
             child: LabeledDropDown(
               label: sortByLabel,
               dropDownSelection: sortOption,
@@ -115,12 +111,12 @@ class FootballStatsState extends State<FootballStatsScreen> {
             ),
           ),
         ]),
-        StatsTable(
-          headers: headers,
+        DoubleHeaderStatsTable(
+          headersMap: headersMap,
           values: values,
           tableHeight: screenHeight -
               appBar.preferredSize.height -
-              soccerPlayersDropdownRowHeight,
+              statsDropdownRowHeight,
           columnWidth: columnWidth,
         )
       ]),

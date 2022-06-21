@@ -77,7 +77,7 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
       body: Column(children: [
         Row(children: [
           Container(
-            height: soccerPlayersDropdownRowHeight,
+            height: statsDropdownRowHeight,
             child: LabeledDropDown(
               label: seasonLabel,
               dropDownSelection: selectedSeason,
@@ -92,7 +92,7 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
             ),
           ),
           Container(
-            height: soccerPlayersDropdownRowHeight,
+            height: statsDropdownRowHeight,
             child: LabeledDropDown(
               label: sortByLabel,
               dropDownSelection: sortOption,
@@ -110,7 +110,7 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
           values: values,
           tableHeight: screenHeight -
               appBar.preferredSize.height -
-              soccerPlayersDropdownRowHeight,
+              statsDropdownRowHeight,
           columnWidth: columnWidth,
         )
       ]),

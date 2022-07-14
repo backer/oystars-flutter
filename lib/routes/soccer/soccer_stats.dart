@@ -34,8 +34,10 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
   @override
   void initState() {
     super.initState();
+    // sort seasons by year and session
+    widget.seasons.sort(((a, b) => -compareSeasons(a, b)));
     seasonPlayersMap[allTime] = calculateAllTimeStats(widget.seasons);
-    for (var season in widget.seasons.reversed) {
+    for (var season in widget.seasons) {
       seasonPlayersMap[seasonDisplayName(season.year, season.session)] =
           season.players;
     }
@@ -199,6 +201,15 @@ class SoccerStatsState extends State<SoccerStatsScreen> {
       }
     }
 
+    return result;
+  }
+
+  // sort seasons based on year and session number
+  int compareSeasons(SoccerSeason a, SoccerSeason b) {
+    var result = a.year.compareTo(b.year);
+    if (result == 0) {
+      result = a.session.compareTo(b.session);
+    }
     return result;
   }
 

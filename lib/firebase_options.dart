@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCuIjC8HeMHN05iGjMCeKtV9-wtu8OiiQc',
-    appId: '1:420745109520:android:fefabb03cb0774cb596a95',
+    appId: '1:420745109520:android:ad4388fd92bc64d4596a95',
     messagingSenderId: '420745109520',
     projectId: 'oystars-2b5f0',
     storageBucket: 'oystars-2b5f0.appspot.com',
@@ -59,11 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCZdd2oRysv0qM1tGJTfdyhfnAouBLhDcg',
-    appId: '1:420745109520:ios:8a72b0b1e9298dfd596a95',
+    appId: '1:420745109520:ios:513fb582ea8b9a28596a95',
     messagingSenderId: '420745109520',
     projectId: 'oystars-2b5f0',
     storageBucket: 'oystars-2b5f0.appspot.com',
-    iosClientId: '420745109520-17ldjr38bi8bt63qb8d1khrb6ueo12ui.apps.googleusercontent.com',
-    iosBundleId: 'org.oystars.oystarsFlutterApp',
+    iosClientId: '420745109520-7b903hl3pgekbei8gsel44lvr3l5a3mr.apps.googleusercontent.com',
+    iosBundleId: 'org.oystars',
   );
 }

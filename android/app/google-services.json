@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:420745109520:android:fefabb03cb0774cb596a95",
+        "mobilesdk_app_id": "1:420745109520:android:ad4388fd92bc64d4596a95",
         "android_client_info": {
-          "package_name": "org.oystars.oystars_flutter_app"
+          "package_name": "org.oystars"
         }
       },
       "oauth_client": [
